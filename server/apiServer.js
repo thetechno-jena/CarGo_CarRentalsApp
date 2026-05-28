@@ -18,7 +18,7 @@ const mongoose = require('mongoose');
 //const authRouter = require('../server/routes/auth');
 
 // create an instance of an express application : it gives us starting point
-//const app = express();
+const app = express();
 
 
 // middleware to register or mount route
@@ -26,13 +26,13 @@ const mongoose = require('mongoose');
 app.use(cors()); */
 
 // console message
-/*
+
 app.use((req, res, next) => {
   console.log(`${req.method} ${req.url}`);
   next();
 }); 
 
-*/
+
 
 //app.use(authRouter);
 
@@ -68,5 +68,5 @@ mongoose.connect(DB)
 //start the server and listen on port
 app.listen(PORT, "0.0.0.0", function(){
   // Log the number
-  console.log(`server is running on port ${port}`);
+  console.log(`server is running on port ${PORT}`);
 })
