@@ -1,0 +1,31 @@
+{
+  "name": "cargo_rentals",
+  "version": "1.0.0",
+  "description": "cargo_rentals backend_api",
+  "keywords": [
+    "car",
+    "rentals",
+    "hybrid",
+    "app",
+    "nodejs",
+    "mongodb"
+  ],
+  "homepage": "https://github.com/thetechno-jena/CarGo_CarRentalsApp#readme",
+  "bugs": {
+    "url": "https://github.com/thetechno-jena/CarGo_CarRentalsApp/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thetechno-jena/CarGo_CarRentalsApp.git"
+  },
+  "license": "ISC",
+  "author": "Jena",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}

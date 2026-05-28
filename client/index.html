@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>TravelSekai Auth</title>
+
+  <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"> 
+<link rel="stylesheet" href="css/style.css">
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+</head>
+<body>
+
+  <!-- LOGIN PAGE -->
+<div data-role="page" id="loginPage">
+  <div data-role="header">
+    <h1>TravelSekai Login</h1>
+  </div>
+
+  <div data-role="main" class="ui-content">
+    <label>Email:</label>
+    <input type="email" id="loginEmail">
+
+    <label>Password:</label>
+    <input type="password" id="loginPassword">
+
+    <button id="loginBtn">Login</button>
+    <a href="#signupPage" data-role="button">Sign Up</a>
+    <!-- forgot password rest button -->
+     <p style="text-align:right;">
+  <a href="#forgotPasswordPage">Forgot Password?</a>
+</p>
+
+    <p id="loginMsg"></p>
+  </div>
+</div>
+
+
+<!-- SIGN UP PAGE -->
+<div data-role="page" id="signupPage">
+  <div data-role="header">
+    <h1>Sign Up</h1>
+  </div>
+
+  <div data-role="main" class="ui-content">
+    <label>Full Name:</label>
+    <input type="text" id="fullName">
+
+    <label>Email:</label>
+    <input type="email" id="signupEmail">
+
+    <label>Password:</label>
+    <input type="password" id="signupPassword">
+
+    <label>Confirm Password:</label>
+    <input type="password" id="confirmPassword">
+
+    <button id="signupBtn">Sign Up</button>
+
+    <a href="#loginPage">Already have an account? Login</a>
+
+    <p id="signupMsg"></p>
+  </div>
+</div>
+
+<!-- forgot password -->
+
+<div data-role="page" id="forgotPasswordPage">
+  <div data-role="header">
+    <a href="#loginPage" data-icon="back">Back</a>
+    <h1>Reset Password</h1>
+  </div>
+
+  <div data-role="main" class="ui-content">
+    <label>Email:</label>
+    <input type="email" id="forgotEmail">
+
+    <button id="resetPasswordBtn">Reset Password</button>
+
+    <p id="forgotMsg"></p>
+  </div>
+</div>
+
+
+
+<!-- home page navigation bar-->
+<!-- HOME PAGE -->
+<div data-role="page" id="homePage">
+  <div data-role="header">
+    <h1>Home Feed</h1>
+  </div>
+
+  <div data-role="main" class="ui-content">
+    <h2>Welcome to TravelSekai</h2>
+    <a href="#addJourneyPage" data-role="button">Add Journey</a>
+    <button id="logoutBtn">Logout</button>
+    <div id="tripFeed"></div>
+  </div>
+
+  <div data-role="footer" data-position="fixed">
+    <div data-role="navbar">
+      <ul>
+        <li><a href="#homePage" class="ui-btn-active">Home</a></li>
+        <li><a href="#addJourneyPage">Add Journey</a></li>
+        <li><a href="#shopPage">Shop</a></li>
+        <li><a href="#dealsPage">Deals</a></li>
+        <li><a href="#accountPage">Account</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ADD JOURNEY PAGE -->
+<div data-role="page" id="addJourneyPage">
+  <div data-role="header">
+    <h1>Add Journey</h1>
+  </div>
+
+  <div data-role="main" class="ui-content">
+    <input type="text" id="tripName" placeholder="Trip Name">
+    <input type="text" id="tripLocation" placeholder="Location">
+    <input type="text" id="photoUrl" placeholder="Photo URL">
+
+    <textarea id="tripDescription" placeholder="Description"></textarea>
+    <textarea id="accommodation" placeholder="Accommodation"></textarea>
+    <textarea id="activities" placeholder="Activities"></textarea>
+
+    <label>Trip Start Date:</label>
+    <input type="date" id="startDate">
+
+    <label>Trip End Date:</label>
+    <input type="date" id="endDate">
+
+    <button id="addJourneyBtn">Add Journey</button>
+    <button id="clearJourneyBtn">Clear Journey</button>
+
+    <p id="journeyMsg"></p>
+  </div>
+
+  <div data-role="footer" data-position="fixed">
+    <div data-role="navbar">
+      <ul>
+        <li><a href="#homePage">Home</a></li>
+        <li><a href="#addJourneyPage" class="ui-btn-active">Add Journey</a></li>
+        <li><a href="#shopPage">Shop</a></li>
+        <li><a href="#dealsPage">Deals</a></li>
+        <li><a href="#accountPage">Account</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- SHOP PAGE -->
+<div data-role="page" id="shopPage">
+  <div data-role="header">
+    <h1>Shop</h1>
+  </div>
+
+  <div data-role="main" class="ui-content">
+    <h2>Shop Page</h2>
+    <p>This is a dummy Shop page.</p>
+  </div>
+
+  <div data-role="footer" data-position="fixed">
+    <div data-role="navbar">
+      <ul>
+        <li><a href="#homePage">Home</a></li>
+        <li><a href="#addJourneyPage">Add Journey</a></li>
+        <li><a href="#shopPage" class="ui-btn-active">Shop</a></li>
+        <li><a href="#dealsPage">Deals</a></li>
+        <li><a href="#accountPage">Account</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- DEALS PAGE -->
+<div data-role="page" id="dealsPage">
+  <div data-role="header">
+    <h1>Deals</h1>
+  </div>
+
+  <div data-role="main" class="ui-content">
+    <h2>Deals Page</h2>
+    <p>This is a dummy Deals page.</p>
+  </div>
+
+  <div data-role="footer" data-position="fixed">
+    <div data-role="navbar">
+      <ul>
+        <li><a href="#homePage">Home</a></li>
+        <li><a href="#addJourneyPage">Add Journey</a></li>
+        <li><a href="#shopPage">Shop</a></li>
+        <li><a href="#dealsPage" class="ui-btn-active">Deals</a></li>
+        <li><a href="#accountPage">Account</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ACCOUNT PAGE -->
+<div data-role="page" id="accountPage">
+  <div data-role="header">
+    <h1>Account</h1>
+  </div>
+
+  <div data-role="main" class="ui-content">
+    <h2>Account Page</h2>
+    <p>This is a dummy Account page.</p>
+    <button id="logoutBtn">Logout</button>
+  </div>
+
+  <div data-role="footer" data-position="fixed">
+    <div data-role="navbar">
+      <ul>
+        <li><a href="#homePage">Home</a></li>
+        <li><a href="#addJourneyPage">Add Journey</a></li>
+        <li><a href="#shopPage">Shop</a></li>
+        <li><a href="#dealsPage">Deals</a></li>
+        <li><a href="#accountPage" class="ui-btn-active">Account</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
