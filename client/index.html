@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>TravelSekai Auth</title>
+  <title>CarGo Auth</title>
 
   <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"> 
 <link rel="stylesheet" href="css/style.css">
@@ -84,70 +84,10 @@
 
 <!-- home page navigation bar-->
 <!-- HOME PAGE -->
-<div data-role="page" id="homePage">
-  <div data-role="header">
-    <h1>Home Feed</h1>
-  </div>
 
-  <div data-role="main" class="ui-content">
-    <h2>Welcome to TravelSekai</h2>
-    <a href="#addJourneyPage" data-role="button">Add Journey</a>
-    <button id="logoutBtn">Logout</button>
-    <div id="tripFeed"></div>
-  </div>
 
-  <div data-role="footer" data-position="fixed">
-    <div data-role="navbar">
-      <ul>
-        <li><a href="#homePage" class="ui-btn-active">Home</a></li>
-        <li><a href="#addJourneyPage">Add Journey</a></li>
-        <li><a href="#shopPage">Shop</a></li>
-        <li><a href="#dealsPage">Deals</a></li>
-        <li><a href="#accountPage">Account</a></li>
-      </ul>
-    </div>
-  </div>
-</div>
+<!-- Car List PAGE -->
 
-<!-- ADD JOURNEY PAGE -->
-<div data-role="page" id="addJourneyPage">
-  <div data-role="header">
-    <h1>Add Journey</h1>
-  </div>
-
-  <div data-role="main" class="ui-content">
-    <input type="text" id="tripName" placeholder="Trip Name">
-    <input type="text" id="tripLocation" placeholder="Location">
-    <input type="text" id="photoUrl" placeholder="Photo URL">
-
-    <textarea id="tripDescription" placeholder="Description"></textarea>
-    <textarea id="accommodation" placeholder="Accommodation"></textarea>
-    <textarea id="activities" placeholder="Activities"></textarea>
-
-    <label>Trip Start Date:</label>
-    <input type="date" id="startDate">
-
-    <label>Trip End Date:</label>
-    <input type="date" id="endDate">
-
-    <button id="addJourneyBtn">Add Journey</button>
-    <button id="clearJourneyBtn">Clear Journey</button>
-
-    <p id="journeyMsg"></p>
-  </div>
-
-  <div data-role="footer" data-position="fixed">
-    <div data-role="navbar">
-      <ul>
-        <li><a href="#homePage">Home</a></li>
-        <li><a href="#addJourneyPage" class="ui-btn-active">Add Journey</a></li>
-        <li><a href="#shopPage">Shop</a></li>
-        <li><a href="#dealsPage">Deals</a></li>
-        <li><a href="#accountPage">Account</a></li>
-      </ul>
-    </div>
-  </div>
-</div>
 
 <!-- SHOP PAGE -->
 <div data-role="page" id="shopPage">
