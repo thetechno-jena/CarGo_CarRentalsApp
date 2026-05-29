@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>TravelSekai Auth</title>
+  <title>Cargo Car Rental</title>
 
   <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"> 
 <link rel="stylesheet" href="css/style.css">
@@ -13,7 +13,7 @@
   <!-- LOGIN PAGE -->
 <div data-role="page" id="loginPage">
   <div data-role="header">
-    <h1>TravelSekai Login</h1>
+    <h1>Cargo Car Rental Login</h1>
   </div>
 
   <div data-role="main" class="ui-content">
@@ -90,7 +90,7 @@
   </div>
 
   <div data-role="main" class="ui-content">
-    <h2>Welcome to TravelSekai</h2>
+    <h2>Welcome to Cargo Car Rental</h2>
     <a href="#addJourneyPage" data-role="button">Add Journey</a>
     <button id="logoutBtn">Logout</button>
     <div id="tripFeed"></div>
@@ -101,7 +101,7 @@
       <ul>
         <li><a href="#homePage" class="ui-btn-active">Home</a></li>
         <li><a href="#addJourneyPage">Add Journey</a></li>
-        <li><a href="#shopPage">Shop</a></li>
+        <li><a href="#carListPage">Cars</a></li>
         <li><a href="#dealsPage">Deals</a></li>
         <li><a href="#accountPage">Account</a></li>
       </ul>
@@ -141,7 +141,7 @@
       <ul>
         <li><a href="#homePage">Home</a></li>
         <li><a href="#addJourneyPage" class="ui-btn-active">Add Journey</a></li>
-        <li><a href="#shopPage">Shop</a></li>
+        <li><a href="#carListPage">Cars</a></li>
         <li><a href="#dealsPage">Deals</a></li>
         <li><a href="#accountPage">Account</a></li>
       </ul>
@@ -149,15 +149,37 @@
   </div>
 </div>
 
-<!-- SHOP PAGE -->
-<div data-role="page" id="shopPage">
+<!-- CAR LIST PAGE -->
+<div data-role="page" id="carListPage">
   <div data-role="header">
-    <h1>Shop</h1>
+    <h1>Available Cars</h1>
   </div>
 
-  <div data-role="main" class="ui-content">
-    <h2>Shop Page</h2>
-    <p>This is a dummy Shop page.</p>
+  <div data-role="main" class="ui-content car-list-content">
+    <div class="car-toolbar">
+      <input type="search" id="carSearch" placeholder="Search model, location or feature">
+
+      <div class="car-filter-grid">
+        <select id="carTypeFilter">
+          <option value="all">All car types</option>
+          <option value="Compact">Compact</option>
+          <option value="Sedan">Sedan</option>
+          <option value="SUV">SUV</option>
+          <option value="Van">Van</option>
+          <option value="Luxury">Luxury</option>
+        </select>
+
+        <select id="carSort">
+          <option value="recommended">Recommended</option>
+          <option value="priceLow">Price: low to high</option>
+          <option value="priceHigh">Price: high to low</option>
+          <option value="ratingHigh">Rating</option>
+        </select>
+      </div>
+    </div>
+
+    <p id="carResultCount" class="result-count"></p>
+    <div id="carList" class="car-list"></div>
   </div>
 
   <div data-role="footer" data-position="fixed">
@@ -165,7 +187,7 @@
       <ul>
         <li><a href="#homePage">Home</a></li>
         <li><a href="#addJourneyPage">Add Journey</a></li>
-        <li><a href="#shopPage" class="ui-btn-active">Shop</a></li>
+        <li><a href="#carListPage" class="ui-btn-active">Cars</a></li>
         <li><a href="#dealsPage">Deals</a></li>
         <li><a href="#accountPage">Account</a></li>
       </ul>
@@ -189,7 +211,7 @@
       <ul>
         <li><a href="#homePage">Home</a></li>
         <li><a href="#addJourneyPage">Add Journey</a></li>
-        <li><a href="#shopPage">Shop</a></li>
+        <li><a href="#carListPage">Cars</a></li>
         <li><a href="#dealsPage" class="ui-btn-active">Deals</a></li>
         <li><a href="#accountPage">Account</a></li>
       </ul>
@@ -214,7 +236,7 @@
       <ul>
         <li><a href="#homePage">Home</a></li>
         <li><a href="#addJourneyPage">Add Journey</a></li>
-        <li><a href="#shopPage">Shop</a></li>
+        <li><a href="#carListPage">Cars</a></li>
         <li><a href="#dealsPage">Deals</a></li>
         <li><a href="#accountPage" class="ui-btn-active">Account</a></li>
       </ul>
