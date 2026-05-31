@@ -39,7 +39,7 @@ authRouter.post('/api/signup',async(req,res)=>{
 
 // Sign_in Api endpoint
 
-authRouter.post('/api/signin', async(req,res)=>{
+/* authRouter.post('/api/signin', async(req,res)=>{
     try{
         const{email, password} = req.body;
       const findUser =  await Signup_User.findOne({email});
@@ -65,29 +65,5 @@ authRouter.post('/api/signin', async(req,res)=>{
     res.status(500).json({ error: err.message });
     }
 });
-// trips api endpoint
-authRouter.post("/api/trips", async (req, res) => {
-  try {
-    const trip = new Trip(req.body);
-    
-    await trip.save();
-
-    res.json({
-      msg: "Journey added successfully",
-      trip:trip
-    });
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
-
-authRouter.get("/api/trips", async (req, res) => {
-  try {
-    const trips = await Trip.find().sort({ createdAt: -1 });
-    res.json(trips);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
-
+*/
 module.exports = authRouter;
