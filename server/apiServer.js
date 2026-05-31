@@ -8,19 +8,23 @@ const PORT = 3000;
 // import mongoose
 const mongoose = require('mongoose');
 
+
 // cors prevents browser blocks request
 //const cors = require("cors");
 
 //import route
-//const authRouter = require('../server/routes/auth');
+const authRouter = require('../server/routes/auth');
 
 // create an instance of an express application : it gives us starting point
 const app = express();
 
 
-// middleware to register or mount route
-/* app.use(express.json());
-app.use(cors()); */
+/* middleware to register or mount route */
+app.use(express.json());
+// import authRouter
+app.use(authRouter);
+
+//app.use(cors()); 
 
 // console message
 
@@ -31,7 +35,7 @@ app.use((req, res, next) => {
 
 
 
-//app.use(authRouter);
+
 
 // create certificate automatically 
 
