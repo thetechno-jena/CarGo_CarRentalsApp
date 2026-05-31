@@ -1,6 +1,6 @@
 const express = require('express');
 const Signup_User = require('../models/signup_user');
-const Trip = require('../models/trip');
+
 
 const jwt = require('jsonwebtoken'); // for signin api endpoint
 
