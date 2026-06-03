@@ -3,10 +3,11 @@
 <head>
   <title>Cargo Car Rental</title>
 
-  <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"> 
-<link rel="stylesheet" href="css/style.css">
-<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
-<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+  <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+  <link rel="stylesheet" href="css/style.css">
+
+  <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 </head>
 <body>
 
@@ -16,49 +17,67 @@
     <h1>Cargo Car Rental Login</h1>
   </div>
 
-  <div data-role="main" class="ui-content">
-    <label>Email:</label>
-    <input type="email" id="loginEmail">
+  <div role="main" class="ui-content">
 
-    <label>Password:</label>
-    <input type="password" id="loginPassword">
+    <div class="form-card">
+          <div class="form-logo">
+  <img src="www/images/cargo-logo.png" alt="CarGo Logo">
+</div>
+      <label>Email:</label>
+      <input type="email" id="loginEmail">
 
-    <button id="loginBtn">Login</button>
-    <a href="#signupPage" data-role="button">Sign Up</a>
-    <!-- forgot password rest button -->
-     <p style="text-align:right;">
-  <a href="#forgotPasswordPage">Forgot Password?</a>
-</p>
+      <label>Password:</label>
+      <input type="password" id="loginPassword">
 
-    <p id="loginMsg"></p>
+      <button id="loginBtn">Login</button>
+
+      <div class="switch-link">
+        <a href="#signupPage">Sign Up</a>
+      </div>
+
+      <div class="forgot-link">
+        <a href="#forgotPage">Forgot Password?</a>
+      </div>
+    </div>
+
   </div>
 </div>
 
+        <p class="smallLinkWrap">
+          <a href="#forgotPasswordPage">Forgot Password?</a>
+        </p>
 
 <!-- SIGN UP PAGE -->
 <div data-role="page" id="signupPage">
   <div data-role="header">
-    <h1>Sign Up</h1>
+    <h1>CarGo Sign Up</h1>
   </div>
 
-  <div data-role="main" class="ui-content">
-    <label>Full Name:</label>
-    <input type="text" id="fullName">
+  <div role="main" class="ui-content">
 
-    <label>Email:</label>
-    <input type="email" id="signupEmail">
+    <div class="form-card">
+      <div class="form-logo">
+  <img src="www/images/cargo-logo.png" alt="CarGo Logo">
+</div>
+      <label>Full Name:</label>
+      <input type="text" id="fullName">
 
-    <label>Password:</label>
-    <input type="password" id="signupPassword">
+      <label>Email:</label>
+      <input type="email" id="signupEmail">
 
-    <label>Confirm Password:</label>
-    <input type="password" id="confirmPassword">
+      <label>Password:</label>
+      <input type="password" id="signupPassword">
 
-    <button id="signupBtn">Sign Up</button>
+      <label>Confirm Password:</label>
+      <input type="password" id="confirmPassword">
 
-    <a href="#loginPage">Already have an account? Login</a>
+      <button id="signupBtn">Sign Up</button>
 
-    <p id="signupMsg"></p>
+      <div class="switch-link">
+        <a href="#loginPage">Already have an account? Login</a>
+      </div>
+    </div>
+
   </div>
 </div>
 
@@ -70,23 +89,56 @@
     <h1>Reset Password</h1>
   </div>
 
-  <div data-role="main" class="ui-content">
-    <label>Email:</label>
-    <input type="email" id="forgotEmail">
+  <!-- SIGN UP PAGE -->
+  <div data-role="page" id="signupPage">
+    <div data-role="header" class="appHeader">
+      <a href="#loginPage" class="ui-btn ui-btn-left">Back</a>
+      <h1>Sign Up</h1>
+    </div>
 
-    <button id="resetPasswordBtn">Reset Password</button>
+    <div data-role="main" class="ui-content">
+      <div class="logoWrap">
+        <img src="www/images/cargo-logo.png" alt="CarGo Logo" class="logoImg">
+      </div>
 
-    <p id="forgotMsg"></p>
+      <div class="formCard">
+        <label for="fullName">Full Name</label>
+        <input type="text" id="fullName" placeholder="Enter your full name">
+
+        <label for="signupEmail">Email</label>
+        <input type="email" id="signupEmail" placeholder="Enter your email">
+
+        <label for="signupPassword">Password</label>
+        <input type="password" id="signupPassword" placeholder="Minimum 8 characters">
+
+        <label for="confirmPassword">Confirm Password</label>
+        <input type="password" id="confirmPassword" placeholder="Re-enter your password">
+
+        <button id="signupBtn" class="primaryBtn">Sign Up</button>
+        <a href="#loginPage" class="ui-btn secondaryBtn">Back to Login</a>
+
+        <p id="signupMsg" class="messageText"></p>
+      </div>
+    </div>
   </div>
-</div>
 
+  <!-- FORGOT PASSWORD PAGE -->
+  <div data-role="page" id="forgotPasswordPage">
+    <div data-role="header" class="appHeader">
+      <a href="#loginPage" class="ui-btn ui-btn-left">Back</a>
+      <h1>Reset Password</h1>
+    </div>
 
+    <div data-role="main" class="ui-content">
+      <div class="formCard">
+        <label for="forgotEmail">Email</label>
+        <input type="email" id="forgotEmail" placeholder="Enter your email">
 
-<!-- home page navigation bar-->
-<!-- HOME PAGE -->
-<div data-role="page" id="homePage">
-  <div data-role="header">
-    <h1>Home Feed</h1>
+        <button id="resetPasswordBtn" class="primaryBtn">Reset Password</button>
+
+        <p id="forgotMsg" class="messageText"></p>
+      </div>
+    </div>
   </div>
 
   <div data-role="main" class="ui-content">
@@ -107,34 +159,45 @@
       </ul>
     </div>
   </div>
-</div>
 
-<!-- ADD JOURNEY PAGE -->
-<div data-role="page" id="addJourneyPage">
-  <div data-role="header">
-    <h1>Add Journey</h1>
+  <!-- CAR DETAILS PAGE -->
+  <div data-role="page" id="carDetailsPage">
+    <div data-role="header" class="appHeader">
+      <a href="#carsPage" class="ui-btn ui-btn-left">Back</a>
+      <h1>Car Details</h1>
+    </div>
+
+    <div data-role="main" class="ui-content">
+      <div id="carDetailsCard" class="detailCard">
+        <p>Select a car from the Cars page.</p>
+      </div>
+
+      <a href="#bookingPage" id="bookNowBtn" class="ui-btn primaryBtn">Book This Car</a>
+    </div>
   </div>
 
-  <div data-role="main" class="ui-content">
-    <input type="text" id="tripName" placeholder="Trip Name">
-    <input type="text" id="tripLocation" placeholder="Location">
-    <input type="text" id="photoUrl" placeholder="Photo URL">
+  <!-- BOOKING PAGE -->
+  <div data-role="page" id="bookingPage">
+    <div data-role="header" class="appHeader">
+      <a href="#carDetailsPage" class="ui-btn ui-btn-left">Back</a>
+      <h1>Create Booking</h1>
+    </div>
 
-    <textarea id="tripDescription" placeholder="Description"></textarea>
-    <textarea id="accommodation" placeholder="Accommodation"></textarea>
-    <textarea id="activities" placeholder="Activities"></textarea>
+    <div data-role="main" class="ui-content">
+      <div class="formCard">
+        <label for="bookingCarName">Selected Car</label>
+        <input type="text" id="bookingCarName" readonly>
 
-    <label>Trip Start Date:</label>
-    <input type="date" id="startDate">
+        <label for="pickupDate">Pickup Date</label>
+        <input type="date" id="pickupDate">
 
-    <label>Trip End Date:</label>
-    <input type="date" id="endDate">
+        <label for="returnDate">Return Date</label>
+        <input type="date" id="returnDate">
 
-    <button id="addJourneyBtn">Add Journey</button>
-    <button id="clearJourneyBtn">Clear Journey</button>
+        <label for="pickupLocation">Pickup Location</label>
+        <input type="text" id="pickupLocation" placeholder="Enter pickup location">
 
-    <p id="journeyMsg"></p>
-  </div>
+        <button id="createBookingBtn" class="primaryBtn">Confirm Booking</button>
 
   <div data-role="footer" data-position="fixed">
     <div data-role="navbar">
@@ -147,7 +210,6 @@
       </ul>
     </div>
   </div>
-</div>
 
 <!-- CAR LIST PAGE -->
 <div data-role="page" id="carListPage">
@@ -193,18 +255,32 @@
       </ul>
     </div>
   </div>
-</div>
 
-<!-- DEALS PAGE -->
-<div data-role="page" id="dealsPage">
-  <div data-role="header">
-    <h1>Deals</h1>
-  </div>
+  <!-- EDIT BOOKING PAGE -->
+  <div data-role="page" id="editBookingPage">
+    <div data-role="header" class="appHeader">
+      <a href="#myBookingsPage" class="ui-btn ui-btn-left">Back</a>
+      <h1>Edit Booking</h1>
+    </div>
 
-  <div data-role="main" class="ui-content">
-    <h2>Deals Page</h2>
-    <p>This is a dummy Deals page.</p>
-  </div>
+    <div data-role="main" class="ui-content">
+      <div class="formCard">
+        <input type="hidden" id="editBookingId">
+
+        <label for="editBookingCarName">Car</label>
+        <input type="text" id="editBookingCarName" readonly>
+
+        <label for="editPickupDate">Pickup Date</label>
+        <input type="date" id="editPickupDate">
+
+        <label for="editReturnDate">Return Date</label>
+        <input type="date" id="editReturnDate">
+
+        <label for="editPickupLocation">Pickup Location</label>
+        <input type="text" id="editPickupLocation">
+
+        <button id="updateBookingBtn" class="primaryBtn">Update Booking</button>
+        <button id="deleteBookingBtn" class="dangerBtn">Cancel Booking</button>
 
   <div data-role="footer" data-position="fixed">
     <div data-role="navbar">
@@ -217,19 +293,22 @@
       </ul>
     </div>
   </div>
-</div>
 
-<!-- ACCOUNT PAGE -->
-<div data-role="page" id="accountPage">
-  <div data-role="header">
-    <h1>Account</h1>
-  </div>
+  <!-- ACCOUNT PAGE -->
+  <div data-role="page" id="accountPage">
+    <div data-role="header" class="appHeader">
+      <a href="#homePage" class="ui-btn ui-btn-left">Back</a>
+      <h1>Account</h1>
+    </div>
 
-  <div data-role="main" class="ui-content">
-    <h2>Account Page</h2>
-    <p>This is a dummy Account page.</p>
-    <button id="logoutBtn">Logout</button>
-  </div>
+    <div data-role="main" class="ui-content">
+      <div class="detailCard">
+        <h3>Your Profile</h3>
+        <p id="accountInfo">No user is currently logged in.</p>
+      </div>
+
+      <button id="logoutBtn" class="dangerBtn">Logout</button>
+    </div>
 
   <div data-role="footer" data-position="fixed">
     <div data-role="navbar">
@@ -242,7 +321,6 @@
       </ul>
     </div>
   </div>
-</div>
 
   <script src="js/script.js"></script>
 </body>

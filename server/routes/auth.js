@@ -1,8 +1,8 @@
 const express = require('express');
 const Signup_User = require('../models/signup_user');
-const Trip = require('../models/trip');
 
-const jwt = require('jsonwebtoken'); // for signin api endpoint
+// for signin api endpoint
+const jwt = require('jsonwebtoken'); 
 
 // password hashing **
 const bcrypt = require('bcryptjs');
@@ -13,9 +13,14 @@ const authRouter = express.Router();
 authRouter.post('/api/signup',async(req,res)=>{
     try{
         const {fullName, email, password, confirm_password} = req.body;
-       /* if (password !== confirm_password) {
+       if (password !== confirm_password) {
   return res.status(400).json({ msg: "Passwords do not match" });
-} */
+} 
+if (!password || password.length < 8) {
+      return res.status(400).json({
+        msg: "Password must be at least 8 characters"
+      });
+    }
         const existingEmail = await Signup_User.findOne({email});
 
         if(existingEmail){
@@ -52,11 +57,10 @@ authRouter.post('/api/signin', async(req,res)=>{
         } else{
             const token = jwt.sign({id: findUser._id},"PasswordKey");
 
-            //I'm exclude password return to user - extract password and out from the document
+            //I exclude password return to user - extract password and out from the document
             const{password ,...userExceptPassword} = findUser._doc;
             const isMatch = password === findUser.password;
             // send the response
-
             res.json({token,...userExceptPassword});
         }
       }
@@ -64,30 +68,6 @@ authRouter.post('/api/signin', async(req,res)=>{
     }catch (err){
     res.status(500).json({ error: err.message });
     }
-});
-// trips api endpoint
-authRouter.post("/api/trips", async (req, res) => {
-  try {
-    const trip = new Trip(req.body);
-    
-    await trip.save();
-
-    res.json({
-      msg: "Journey added successfully",
-      trip:trip
-    });
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
-
-authRouter.get("/api/trips", async (req, res) => {
-  try {
-    const trips = await Trip.find().sort({ createdAt: -1 });
-    res.json(trips);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
 });
 
 module.exports = authRouter;
