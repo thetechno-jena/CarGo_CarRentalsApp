@@ -4,6 +4,7 @@
 
 body {
   font-family: Arial, sans-serif;
+<<<<<<< HEAD
   background: linear-gradient(135deg, #07111f, #10243a);
   margin: 0;
   padding: 0;
@@ -120,9 +121,64 @@ button {
 /* =========================
    LINKS
 ========================= */
+=======
+  background: #f4f7fb;
+}
 
-.forgot-text {
+.appHeader {
+  background: #0f4c81 !important;
+  color: #fff !important;
+  border: none !important;
+}
+
+.appHeader h1,
+.appHeader .ui-title {
+  color: #fff !important;
+}
+
+.logoWrap {
+  text-align: center;
+  margin: 10px 0 20px;
+}
+
+.logoImg {
+  width: 180px;
+  max-width: 90%;
+  height: auto;
+}
+
+.formCard,
+.welcomeCard,
+.filterCard,
+.detailCard,
+.emptyCard,
+.carCard,
+.bookingCard,
+.menuCard {
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.welcomeCard h2,
+.detailCard h2,
+.carCard h3,
+.bookingCard h3 {
+  margin-top: 0;
+}
+
+.messageText {
+  margin-top: 12px;
+  font-weight: bold;
+  text-align: center;
+}
+>>>>>>> 8c2c57c4579d89d949101f46d0f384aeff50896f
+
+.smallLinkWrap {
   text-align: right;
+<<<<<<< HEAD
   margin-top: 10px;
 }
 
@@ -188,9 +244,67 @@ button {
 }
 
 .trip-img {
+=======
+  margin-top: 8px;
+}
+
+.smallLinkWrap a {
+  text-decoration: none;
+  color: #0f4c81;
+  font-size: 14px;
+}
+
+.primaryBtn,
+.secondaryBtn,
+.dangerBtn {
+>>>>>>> 8c2c57c4579d89d949101f46d0f384aeff50896f
   width: 100%;
-  max-height: 250px;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 10px !important;
+  font-weight: bold !important;
+}
+
+.primaryBtn {
+  background: #0f4c81 !important;
+  color: #fff !important;
+}
+
+.secondaryBtn {
+  background: #dfeaf5 !important;
+  color: #123 !important;
+}
+
+.dangerBtn {
+  background: #c23b3b !important;
+  color: #fff !important;
+}
+
+.menuGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.menuCard {
+  text-align: left;
+  border: none !important;
+}
+
+.menuCard h3 {
+  margin-bottom: 8px;
+}
+
+.menuCard p {
+  margin: 0;
+  color: #444;
+}
+
+.carImage {
+  width: 100%;
+  height: 180px;
   object-fit: cover;
+<<<<<<< HEAD
   border-radius: 8px;
 }
 
@@ -261,3 +375,19 @@ img[src*="cargo-logo"] {
   border: none !important;
 }
 
+=======
+  border-radius: 12px;
+  margin-bottom: 12px;
+}
+
+.bottomNav .ui-btn-active {
+  background: #0f4c81 !important;
+  color: #fff !important;
+}
+
+@media (min-width: 700px) {
+  .menuGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+>>>>>>> 8c2c57c4579d89d949101f46d0f384aeff50896f
