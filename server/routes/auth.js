@@ -21,12 +21,6 @@ if (!password || password.length < 8) {
         msg: "Password must be at least 8 characters"
       });
     }
-
-    if (password !== confirm_password) {
-      return res.status(400).json({
-        msg: "Passwords do not match"
-      });
-    }
         const existingEmail = await Signup_User.findOne({email});
 
         if(existingEmail){
