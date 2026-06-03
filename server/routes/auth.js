@@ -1,8 +1,8 @@
 const express = require('express');
 const Signup_User = require('../models/signup_user');
 
-
-//const jwt = require('jsonwebtoken'); // for signin api endpoint
+// for signin api endpoint
+const jwt = require('jsonwebtoken'); 
 
 // password hashing **
 const bcrypt = require('bcryptjs');
