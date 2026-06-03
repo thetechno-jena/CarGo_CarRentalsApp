@@ -16,6 +16,17 @@ authRouter.post('/api/signup',async(req,res)=>{
        /* if (password !== confirm_password) {
   return res.status(400).json({ msg: "Passwords do not match" });
 } */
+if (!password || password.length < 8) {
+      return res.status(400).json({
+        msg: "Password must be at least 8 characters"
+      });
+    }
+
+    if (password !== confirm_password) {
+      return res.status(400).json({
+        msg: "Passwords do not match"
+      });
+    }
         const existingEmail = await Signup_User.findOne({email});
 
         if(existingEmail){
@@ -52,11 +63,10 @@ authRouter.post('/api/signin', async(req,res)=>{
         } else{
             const token = jwt.sign({id: findUser._id},"PasswordKey");
 
-            //I'm exclude password return to user - extract password and out from the document
+            //I exclude password return to user - extract password and out from the document
             const{password ,...userExceptPassword} = findUser._doc;
             const isMatch = password === findUser.password;
             // send the response
-
             res.json({token,...userExceptPassword});
         }
       }
