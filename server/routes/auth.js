@@ -39,7 +39,7 @@ authRouter.post('/api/signup',async(req,res)=>{
 
 // Sign_in Api endpoint
 
-/* authRouter.post('/api/signin', async(req,res)=>{
+authRouter.post('/api/signin', async(req,res)=>{
     try{
         const{email, password} = req.body;
       const findUser =  await Signup_User.findOne({email});
@@ -65,5 +65,5 @@ authRouter.post('/api/signup',async(req,res)=>{
     res.status(500).json({ error: err.message });
     }
 });
-*/
+
 module.exports = authRouter;
