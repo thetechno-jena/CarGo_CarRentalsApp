@@ -15,25 +15,30 @@
   <div data-role="header">
     <h1>CarGo Login</h1>
   </div>
-  <div class="form-logo">
-  <img src="./www/images/cargo-logo.png" alt="CarGo Logo">
+
+  <div role="main" class="ui-content">
+
+    <div class="form-card">
+          <div class="form-logo">
+  <img src="www/images/cargo-logo.png" alt="CarGo Logo">
 </div>
+      <label>Email:</label>
+      <input type="email" id="loginEmail">
 
-  <div data-role="main" class="ui-content">
-    <label>Email:</label>
-    <input type="email" id="loginEmail">
+      <label>Password:</label>
+      <input type="password" id="loginPassword">
 
-    <label>Password:</label>
-    <input type="password" id="loginPassword">
+      <button id="loginBtn">Login</button>
 
-    <button id="loginBtn">Login</button>
-    <a href="#signupPage" data-role="button">Sign Up</a>
-    <!-- forgot password rest button -->
-     <p style="text-align:right;">
-  <a href="#forgotPasswordPage">Forgot Password?</a>
-</p>
+      <div class="switch-link">
+        <a href="#signupPage">Sign Up</a>
+      </div>
 
-    <p id="loginMsg"></p>
+      <div class="forgot-link">
+        <a href="#forgotPage">Forgot Password?</a>
+      </div>
+    </div>
+
   </div>
 </div>
 
@@ -41,30 +46,34 @@
 <!-- SIGN UP PAGE -->
 <div data-role="page" id="signupPage">
   <div data-role="header">
-    <h1>Sign Up</h1>
+    <h1>CarGo Sign Up</h1>
   </div>
-  <div class="form-logo">
-  <img src="./www/images/cargo-logo.png" alt="CarGo Logo">
+
+  <div role="main" class="ui-content">
+
+    <div class="form-card">
+      <div class="form-logo">
+  <img src="www/images/cargo-logo.png" alt="CarGo Logo">
 </div>
+      <label>Full Name:</label>
+      <input type="text" id="fullName">
 
-  <div data-role="main" class="ui-content">
-    <label>Full Name:</label>
-    <input type="text" id="fullName">
+      <label>Email:</label>
+      <input type="email" id="signupEmail">
 
-    <label>Email:</label>
-    <input type="email" id="signupEmail">
+      <label>Password:</label>
+      <input type="password" id="signupPassword">
 
-    <label>Password:</label>
-    <input type="password" id="signupPassword">
+      <label>Confirm Password:</label>
+      <input type="password" id="confirmPassword">
 
-    <label>Confirm Password:</label>
-    <input type="password" id="confirmPassword">
+      <button id="signupBtn">Sign Up</button>
 
-    <button type="button" id="signupBtn">Sign Up</button>
+      <div class="switch-link">
+        <a href="#loginPage">Already have an account? Login</a>
+      </div>
+    </div>
 
-    <a href="#loginPage">Already have an account? Login</a>
-
-    <p id="signupMsg"></p>
   </div>
 </div>
 
