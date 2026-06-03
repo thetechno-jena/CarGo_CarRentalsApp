@@ -5,7 +5,7 @@ const Signup_User = require('../models/signup_user');
 //const jwt = require('jsonwebtoken'); // for signin api endpoint
 
 // password hashing **
-//const bcrypt = require('bcryptjs');
+const bcrypt = require('bcryptjs');
 //const { hasSubscribers } = require('node:diagnostics_channel');
 
 const authRouter = express.Router();
@@ -22,10 +22,10 @@ authRouter.post('/api/signup',async(req,res)=>{
             return res.status(400).json({msg:"User already exist!"});
         }else{
             // creating random string with salt for password hash
-                // const salt = await bcrypt.genSalt(10);
-                // const hashed_password = await bcrypt.hash(password,salt);
+                const salt = await bcrypt.genSalt(10);
+                const hashed_password = await bcrypt.hash(password,salt);
 
-            let new_user = new Signup_User ({fullName, email, password}); 
+            let new_user = new Signup_User ({fullName, email, password:hashed_password}); 
             new_user = await new_user.save();
             res.json({
   msg: "Signup successful",
