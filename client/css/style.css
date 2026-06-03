@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 * {
     box-sizing: border-box;
 }
@@ -10,124 +9,6 @@ body {
     font-family: "Segoe UI", Arial, sans-serif;
     background: linear-gradient(180deg, #f4f7fb 0%, #eef2f8 100%);
     color: #172033;
-=======
-/* =========================
-   GENERAL
-========================= */
-
-body {
-  font-family: Arial, sans-serif;
-  background: linear-gradient(135deg, #07111f, #10243a);
-  margin: 0;
-  padding: 0;
-  min-height: 100vh;
-}
-
-/* =========================
-   LOGO
-
-.form-logo {
-  text-align: center;
-  margin: 20px 0;
-}
-
-.form-logo img {
-  width: 140px;
-  height: auto;
-}
-
-/* =========================
-   CONTAINER
-
-.container {
-  width: 100%;
-  max-width: 420px;
-  margin: 0 auto;
-  padding: 20px;
-  box-sizing: border-box;
-}
-
-/* =========================
-   CARD
-
-.card {
-  background: #ffffff;
-  padding: 25px;
-  border-radius: 18px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
-}
-
-/* =========================
-   HEADINGS
-
-h1 {
-  text-align: center;
-  color: #ffffff;
-  margin-top: 20px;
-}
-
-h2 {
-  text-align: center;
-  color: #10243a;
-  margin-bottom: 20px;
-}
-
-/* =========================
-   INPUTS
-
-input {
-  width: 100%;
-  padding: 14px;
-  margin: 10px 0;
-  box-sizing: border-box;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  font-size: 16px;
-}
-
-input:focus {
-  outline: none;
-  border-color: #0084ff;
-  box-shadow: 0 0 5px rgba(0, 132, 255, 0.4);
-}
-
-/* =========================
-   BUTTONS
-
-button {
-  width: 100%;
-  padding: 14px;
-  margin-top: 12px;
-  cursor: pointer;
-  font-weight: bold;
-  font-size: 16px;
-  border-radius: 10px;
-  border: none;
-  transition: 0.3s;
-}
-
-#signinBtn {
-  background: #0084ff;
-  color: white;
-}
-
-#signinBtn:hover {
-  background: #006fd6;
-}
-
-#signupBtn {
-  background: #145f3c;
-  color: white;
-}
-
-#signupBtn:hover {
-  background: #0f4a2e;
-}
-
-/* =========================
-   LINKS
-  background: #f4f7fb;
->>>>>>> 04c65bfdddac7d29bb1e5f3a50e72cc870e02b97
 }
 
 body .ui-page {
@@ -417,91 +298,24 @@ body .ui-page {
 .carCard p,
 .bookingCard p,
 .detailPanel p,
-.profileCard p {
+.profileCard p,
+.emptyCard p {
     margin: 10px 0;
     color: #374151;
     font-size: 15px;
     line-height: 1.55;
 }
 
-<<<<<<< HEAD
 .carCard strong,
 .bookingCard strong,
 .detailPanel strong,
 .profileCard strong {
     color: #0f1f36;
-=======
-.smallLinkWrap {
-  text-align: right;
-  margin-top: 10px;
-}
-
-.forgot-text a {
-  color: #0084ff;
-  text-decoration: none;
-  font-size: 14px;
-}
-
-.forgot-text a:hover {
-  text-decoration: underline;
-}
-
-.switch-form {
-  text-align: center;
-  margin-top: 15px;
-}
-
-.switch-form a {
-  color: #0084ff;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.switch-form a:hover {
-  text-decoration: underline;
-}
-
-/* =========================
-   MESSAGES
-
-#signinMsg,
-#signupMsg {
-  text-align: center;
-  font-weight: bold;
-  margin-top: 12px;
-}
-
-/* =========================
-   HIDDEN
-
-.hidden {
-  display: none;
-}
-
-/* =========================
-   TRIP CARD
-
-.trip-card {
-  background: white;
-  padding: 15px;
-  margin-bottom: 15px;
-  border-radius: 12px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
-}
-
-.trip-card h3 {
-  margin-top: 0;
-  color: #0084ff;
-}
-
-.trip-img {
-  margin-top: 8px;
->>>>>>> 04c65bfdddac7d29bb1e5f3a50e72cc870e02b97
 }
 
 .carImage {
     width: 100%;
-    height: 240px;
+    height: 320px;
     object-fit: cover;
     border-radius: 18px;
     margin-bottom: 18px;
@@ -590,7 +404,6 @@ select {
     margin-bottom: 14px !important;
 }
 
-<<<<<<< HEAD
 .ui-input-text input,
 textarea,
 select {
@@ -598,239 +411,6 @@ select {
     color: #172033 !important;
     padding: 12px 14px !important;
     background: transparent !important;
-=======
-.carImage {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-  border-radius: 6px;
-}
-
-/* car list page */
-
-.car-list-content {
-  padding-bottom: 90px;
-}
-
-.car-toolbar {
-  background: #ffffff;
-  border: 1px solid #d9e2ec;
-  border-radius: 8px;
-  padding: 12px;
-  margin-bottom: 12px;
-  box-shadow: 0 2px 8px rgba(18, 38, 63, 0.08);
-}
-
-.car-filter-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-}
-
-.result-count {
-  color: #4b5563;
-  font-size: 14px;
-  font-weight: bold;
-  margin: 8px 2px 12px;
-}
-
-.car-list {
-  display: grid;
-  gap: 14px;
-}
-
-.car-card {
-  overflow: hidden;
-  background: #ffffff;
-  border: 1px solid #d9e2ec;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(18, 38, 63, 0.08);
-}
-
-.car-img {
-  width: 100%;
-  height: 170px;
-  display: block;
-  object-fit: cover;
-  background: #d9e2ec;
-}
-
-.car-card-body {
-  padding: 13px;
-}
-
-.car-card-heading {
-  display: flex;
-  justify-content: space-between;
-  gap: 12px;
-  align-items: flex-start;
-}
-
-.car-card-heading h3 {
-  color: #102a43;
-  font-size: 18px;
-  line-height: 1.25;
-  margin: 0 0 4px;
-}
-
-.car-card-heading p {
-  color: #52606d;
-  font-size: 14px;
-  margin: 0;
-}
-
-.car-price {
-  flex: 0 0 auto;
-  color: #0b6bcb;
-  font-size: 20px;
-  font-weight: bold;
-  line-height: 1;
-  text-align: right;
-}
-
-.car-price small {
-  display: block;
-  color: #52606d;
-  font-size: 12px;
-  font-weight: normal;
-  margin-top: 3px;
-}
-
-.car-meta {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 8px;
-  margin: 12px 0;
-}
-
-.car-meta span {
-  background: #eef5fb;
-  border-radius: 6px;
-  color: #243b53;
-  font-size: 13px;
-  font-weight: bold;
-  padding: 7px 8px;
-  text-align: center;
-}
-
-.car-features {
-  color: #334e68;
-  font-size: 14px;
-  line-height: 1.4;
-  margin: 0 0 12px;
-}
-
-.car-card-actions {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 10px;
-}
-
-.car-rating {
-  color: #145f3c;
-  font-size: 14px;
-  font-weight: bold;
-}
-
-.empty-state {
-  background: #ffffff;
-  border: 1px dashed #bcccdc;
-  border-radius: 8px;
-  color: #52606d;
-  padding: 18px;
-  text-align: center;
-}
-
-@media (max-width: 360px) {
-  .car-filter-grid,
-  .car-meta {
-    grid-template-columns: 1fr;
-  }
-
-  .car-card-heading,
-  .car-card-actions {
-    display: block;
-  }
-
-  .car-price {
-    display: block;
-    margin-top: 10px;
-    text-align: left;
-  }
-}
-  border-radius: 8px;
-}
-
-/* =========================
-   MOBILE
-
-@media screen and (max-width: 480px) {
-  .container {
-    padding: 15px;
-  }
-
-  .card {
-    padding: 20px;
-  }
-
-  .form-logo img {
-    width: 120px;
-  }
-}
-
-
-
-.form-logo img,
-img[src*="cargo-logo"] {
-  width: 130px !important;
-  max-width: 130px !important;
-  height: auto !important;
-  display: block !important;
-  margin: 20px auto !important;
-}
-
-.ui-page {
-  background: linear-gradient(135deg, #0f5132, #145f3c) !important;
-}
-
-.ui-content {
-  background: transparent !important;
-}
-
-.form-card {
-  background: #ffffff;
-  max-width: 380px;
-  margin: 30px auto;
-  padding: 25px;
-  border-radius: 18px;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.25);
-}
-
-.ui-header {
-  background: transparent !important;
-  border: none !important;
-}
-
-.ui-header h1 {
-  color: white !important;
-}
-
-.ui-btn {
-  border-radius: 12px !important;
-}
-
-#signinBtn,
-#signupBtn,
-#loginBtn {
-  background: #0084ff !important;
-  color: white !important;
-  border: none !important;
-}
-
-  border-radius: 12px;
-  margin-bottom: 12px;
->>>>>>> 04c65bfdddac7d29bb1e5f3a50e72cc870e02b97
 }
 
 .linkRow {
@@ -838,7 +418,6 @@ img[src*="cargo-logo"] {
     margin-top: 12px;
 }
 
-<<<<<<< HEAD
 .linkRow a {
     color: #0f4c81 !important;
     text-decoration: none;
@@ -855,6 +434,11 @@ img[src*="cargo-logo"] {
 }
 
 .centerText {
+    text-align: center;
+}
+
+.emptyCard {
+    padding: 18px 20px;
     text-align: center;
 }
 
@@ -913,14 +497,6 @@ img[src*="cargo-logo"] {
     }
 
     .carImage {
-        height: 200px;
+        height: 240px;
     }
 }
-=======
-@media (min-width: 700px) {
-  .menuGrid {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
->>>>>>> 04c65bfdddac7d29bb1e5f3a50e72cc870e02b97
