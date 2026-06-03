@@ -4,6 +4,105 @@ let allCars = [];
 let selectedCar = null;
 let currentBookingList = [];
 
+const demoCars = [
+  {
+    id: "c1",
+    name: "Toyota Corolla",
+    brand: "Toyota",
+    type: "Sedan",
+    seats: 5,
+    transmission: "Automatic",
+    fuel: "Petrol",
+    pricePerDay: 75,
+    image: "images/cars/toyota-corolla.jpg",
+    description: "A reliable and comfortable sedan for city driving, daily travel, and small family trips."
+  },
+  {
+    id: "c2",
+    name: "Hyundai Tucson",
+    brand: "Hyundai",
+    type: "SUV",
+    seats: 5,
+    transmission: "Automatic",
+    fuel: "Diesel",
+    pricePerDay: 105,
+    image: "images/cars/hyundai-tucson.jpg",
+    description: "A spacious SUV suitable for longer journeys, weekend trips, and comfortable highway driving."
+  },
+  {
+    id: "c3",
+    name: "Kia Carnival",
+    brand: "Kia",
+    type: "Van",
+    seats: 8,
+    transmission: "Automatic",
+    fuel: "Petrol",
+    pricePerDay: 130,
+    image: "images/cars/kia-carnival.jpg",
+    description: "A roomy family van ideal for group travel, luggage, and airport transfers."
+  },
+  {
+    id: "c4",
+    name: "Toyota Camry",
+    brand: "Toyota",
+    type: "Sedan",
+    seats: 5,
+    transmission: "Automatic",
+    fuel: "Hybrid",
+    pricePerDay: 95,
+    image: "images/cars/toyota-camry.jpg",
+    description: "A stylish and efficient sedan offering smooth performance, comfort, and low fuel consumption."
+  },
+  {
+    id: "c5",
+    name: "Toyota Crown",
+    brand: "Toyota",
+    type: "Luxury Sedan",
+    seats: 5,
+    transmission: "Automatic",
+    fuel: "Hybrid",
+    pricePerDay: 140,
+    image: "images/cars/toyota-crown.jpg",
+    description: "A premium sedan with a refined interior, elegant styling, and a comfortable driving experience."
+  },
+  {
+    id: "c6",
+    name: "Toyota Land Cruiser",
+    brand: "Toyota",
+    type: "4WD SUV",
+    seats: 7,
+    transmission: "Automatic",
+    fuel: "Diesel",
+    pricePerDay: 180,
+    image: "images/cars/toyota-land-cruiser.jpg",
+    description: "A strong and capable SUV designed for family trips, long-distance travel, and rougher road conditions."
+  },
+  {
+    id: "c7",
+    name: "Mercedes-Benz E-Class",
+    brand: "Mercedes-Benz",
+    type: "Luxury Sedan",
+    seats: 5,
+    transmission: "Automatic",
+    fuel: "Petrol",
+    pricePerDay: 210,
+    image: "images/cars/mercedes-e-class.jpg",
+    description: "A premium executive sedan that combines luxury, performance, and advanced comfort features."
+  },
+  {
+    id: "c8",
+    name: "BMW 5 Series",
+    brand: "BMW",
+    type: "Luxury Sedan",
+    seats: 5,
+    transmission: "Automatic",
+    fuel: "Petrol",
+    pricePerDay: 205,
+    image: "images/cars/bmw-5-series.jpg",
+    description: "A sporty and elegant luxury sedan that delivers a smooth ride and strong premium appeal."
+  }
+];
+
 function getCurrentUser() {
   try {
     return JSON.parse(localStorage.getItem("user") || "{}");
@@ -20,6 +119,14 @@ function isLoggedIn() {
   return !!getToken();
 }
 
+function requireLogin() {
+  if (!isLoggedIn()) {
+    $.mobile.changePage("#loginPage");
+    return false;
+  }
+  return true;
+}
+
 function updateWelcomeName() {
   const user = getCurrentUser();
   const name = user.fullName || user.name || "Customer";
@@ -28,121 +135,112 @@ function updateWelcomeName() {
 
 function updateAccountPage() {
   const user = getCurrentUser();
-
-  if (user && (user.fullName || user.email)) {
-    $("#accountInfo").html(
-      `<strong>Name:</strong> ${user.fullName || "N/A"}<br><strong>Email:</strong> ${user.email || "N/A"}`
-    );
-  } else {
-    $("#accountInfo").text("No user is currently logged in.");
-  }
+  $("#accountName").text(user.fullName || user.name || "N/A");
+  $("#accountEmail").text(user.email || "N/A");
 }
 
-function requireLogin(targetPage) {
-  if (!isLoggedIn()) {
-    $.mobile.changePage("#loginPage");
-    return false;
-  }
+function setImage(imgEl, src, fallback) {
+  imgEl.attr("src", src);
+  imgEl.off("error").on("error", function () {
+    $(this).attr("src", fallback);
+  });
+}
 
-  if (targetPage) {
-    $.mobile.changePage(targetPage);
-  }
-  return true;
+function showCarsEmptyState(show) {
+  $("#carsEmptyState").toggle(show);
+}
+
+function showBookingsEmptyState(show) {
+  $("#bookingsEmptyState").toggle(show);
 }
 
 function renderCars(cars) {
-  let html = "";
+  const container = $("#carsList");
+  container.empty();
 
   if (!cars || cars.length === 0) {
-    html = `<div class="emptyCard"><p>No cars found.</p></div>`;
-  } else {
-    cars.forEach(function (car) {
-      const carId = car._id || car.id || "";
-      const image = car.image || "https://via.placeholder.com/500x280?text=CarGo+Car";
-      const name = car.name || car.carName || "Car";
-      const brand = car.brand || "Brand not provided";
-      const type = car.type || "Type not provided";
-      const price = car.pricePerDay || car.price || "N/A";
-      const seats = car.seats || "N/A";
-      const transmission = car.transmission || "N/A";
-
-      html += `
-        <div class="carCard">
-          <img src="${image}" alt="${name}" class="carImage">
-          <h3>${name}</h3>
-          <p><strong>Brand:</strong> ${brand}</p>
-          <p><strong>Type:</strong> ${type}</p>
-          <p><strong>Seats:</strong> ${seats}</p>
-          <p><strong>Transmission:</strong> ${transmission}</p>
-          <p><strong>Price per day:</strong> $${price}</p>
-          <button class="viewCarBtn primaryBtn" data-id="${carId}">View Details</button>
-        </div>
-      `;
-    });
+    showCarsEmptyState(true);
+    return;
   }
 
-  $("#carsList").html(html);
+  showCarsEmptyState(false);
+
+  cars.forEach(function (car) {
+    const card = $("#carCardSample").clone().removeAttr("id").show();
+
+    card.find(".carNameEl").text(car.name || "Car");
+    card.find(".carBrandEl").text(car.brand || "N/A");
+    card.find(".carTypeEl").text(car.type || "N/A");
+    card.find(".carSeatsEl").text(car.seats || "N/A");
+    card.find(".carTransmissionEl").text(car.transmission || "N/A");
+    card.find(".carPriceEl").text(car.pricePerDay || car.price || "N/A");
+    card.find(".viewCarBtn").attr("data-id", car._id || car.id || "");
+
+    setImage(
+      card.find(".carImageEl"),
+      car.image || "images/cars/toyota-corolla.jpg",
+      "images/cars/toyota-corolla.jpg"
+    );
+
+    container.append(card);
+  });
 }
 
 function renderCarDetails(car) {
   if (!car) {
-    $("#carDetailsCard").html("<p>No car selected.</p>");
+    $("#detailCarName").text("Select a car");
+    $("#detailCarBrand").text("-");
+    $("#detailCarType").text("-");
+    $("#detailCarSeats").text("-");
+    $("#detailCarTransmission").text("-");
+    $("#detailCarFuel").text("-");
+    $("#detailCarPrice").text("-");
+    $("#detailCarDescription").text("No description available.");
+    setImage($("#detailCarImage"), "images/cars/toyota-corolla.jpg", "images/cars/toyota-corolla.jpg");
     return;
   }
 
-  const image = car.image || "https://via.placeholder.com/500x280?text=CarGo+Car";
-  const name = car.name || car.carName || "Car";
-  const brand = car.brand || "Brand not provided";
-  const type = car.type || "Type not provided";
-  const seats = car.seats || "N/A";
-  const transmission = car.transmission || "N/A";
-  const fuel = car.fuel || "N/A";
-  const price = car.pricePerDay || car.price || "N/A";
-  const description = car.description || "No description available.";
+  $("#detailCarName").text(car.name || "Car");
+  $("#detailCarBrand").text(car.brand || "N/A");
+  $("#detailCarType").text(car.type || "N/A");
+  $("#detailCarSeats").text(car.seats || "N/A");
+  $("#detailCarTransmission").text(car.transmission || "N/A");
+  $("#detailCarFuel").text(car.fuel || "N/A");
+  $("#detailCarPrice").text(car.pricePerDay || car.price || "N/A");
+  $("#detailCarDescription").text(car.description || "No description available.");
 
-  $("#carDetailsCard").html(`
-    <img src="${image}" alt="${name}" class="carImage">
-    <h2>${name}</h2>
-    <p><strong>Brand:</strong> ${brand}</p>
-    <p><strong>Type:</strong> ${type}</p>
-    <p><strong>Seats:</strong> ${seats}</p>
-    <p><strong>Transmission:</strong> ${transmission}</p>
-    <p><strong>Fuel:</strong> ${fuel}</p>
-    <p><strong>Price per day:</strong> $${price}</p>
-    <p><strong>Description:</strong> ${description}</p>
-  `);
+  setImage(
+    $("#detailCarImage"),
+    car.image || "images/cars/toyota-corolla.jpg",
+    "images/cars/toyota-corolla.jpg"
+  );
 
-  $("#bookingCarName").val(name);
+  $("#bookingCarName").val(car.name || "Car");
 }
 
 function renderBookings(bookings) {
-  let html = "";
+  const container = $("#bookingsList");
+  container.empty();
 
   if (!bookings || bookings.length === 0) {
-    html = `<div class="emptyCard"><p>No bookings found.</p></div>`;
-  } else {
-    bookings.forEach(function (booking) {
-      const bookingId = booking._id || booking.id || "";
-      const carName = booking.carName || "Booked Car";
-      const pickupDate = booking.pickupDate || "";
-      const returnDate = booking.returnDate || "";
-      const pickupLocation = booking.pickupLocation || "";
-      const status = booking.status || "Booked";
-
-      html += `
-        <div class="bookingCard">
-          <h3>${carName}</h3>
-          <p><strong>Pickup Date:</strong> ${pickupDate}</p>
-          <p><strong>Return Date:</strong> ${returnDate}</p>
-          <p><strong>Pickup Location:</strong> ${pickupLocation}</p>
-          <p><strong>Status:</strong> ${status}</p>
-          <button class="editBookingBtn secondaryBtn" data-id="${bookingId}">Edit Booking</button>
-        </div>
-      `;
-    });
+    showBookingsEmptyState(true);
+    return;
   }
 
-  $("#bookingsList").html(html);
+  showBookingsEmptyState(false);
+
+  bookings.forEach(function (booking) {
+    const card = $("#bookingCardSample").clone().removeAttr("id").show();
+
+    card.find(".bookingCarNameEl").text(booking.carName || "Booked Car");
+    card.find(".bookingPickupDateEl").text(booking.pickupDate || "");
+    card.find(".bookingReturnDateEl").text(booking.returnDate || "");
+    card.find(".bookingPickupLocationEl").text(booking.pickupLocation || "");
+    card.find(".bookingStatusEl").text(booking.status || "Booked");
+    card.find(".editBookingBtn").attr("data-id", booking._id || booking.id || "");
+
+    container.append(card);
+  });
 }
 
 function loadCars() {
@@ -158,46 +256,7 @@ function loadCars() {
       $("#carsMsg").text("");
     },
     error: function () {
-      const fallbackCars = [
-        {
-          id: "c1",
-          name: "Toyota Corolla",
-          brand: "Toyota",
-          type: "Sedan",
-          seats: 5,
-          transmission: "Automatic",
-          fuel: "Petrol",
-          pricePerDay: 75,
-          image: "https://via.placeholder.com/500x280?text=Toyota+Corolla",
-          description: "A reliable and comfortable sedan for city and family travel."
-        },
-        {
-          id: "c2",
-          name: "Hyundai Tucson",
-          brand: "Hyundai",
-          type: "SUV",
-          seats: 5,
-          transmission: "Automatic",
-          fuel: "Diesel",
-          pricePerDay: 105,
-          image: "https://via.placeholder.com/500x280?text=Hyundai+Tucson",
-          description: "A spacious SUV suitable for longer journeys and road trips."
-        },
-        {
-          id: "c3",
-          name: "Kia Carnival",
-          brand: "Kia",
-          type: "Van",
-          seats: 8,
-          transmission: "Automatic",
-          fuel: "Petrol",
-          pricePerDay: 130,
-          image: "https://via.placeholder.com/500x280?text=Kia+Carnival",
-          description: "A roomy family van ideal for large groups and luggage."
-        }
-      ];
-
-      allCars = fallbackCars;
+      allCars = demoCars;
       renderCars(allCars);
       $("#carsMsg").css("color", "#c17d00").text("Loaded demo cars because the API cars route is not ready yet.");
     }
@@ -213,10 +272,9 @@ function searchCars() {
   }
 
   const filtered = allCars.filter(function (car) {
-    const name = (car.name || car.carName || "").toLowerCase();
+    const name = (car.name || "").toLowerCase();
     const brand = (car.brand || "").toLowerCase();
     const type = (car.type || "").toLowerCase();
-
     return name.includes(keyword) || brand.includes(keyword) || type.includes(keyword);
   });
 
@@ -248,40 +306,36 @@ function loadBookings() {
   });
 }
 
-function saveDemoBookings(bookings) {
-  localStorage.setItem("demoBookings", JSON.stringify(bookings));
-}
-
 function createDemoBooking(bookingData) {
-  const demoBookings = JSON.parse(localStorage.getItem("demoBookings") || "[]");
-  const newBooking = {
+  const bookings = JSON.parse(localStorage.getItem("demoBookings") || "[]");
+  bookings.push({
     id: "b" + Date.now(),
     ...bookingData,
     status: "Booked"
-  };
-  demoBookings.push(newBooking);
-  saveDemoBookings(demoBookings);
+  });
+  localStorage.setItem("demoBookings", JSON.stringify(bookings));
 }
 
-function updateDemoBooking(bookingId, bookingData) {
-  const demoBookings = JSON.parse(localStorage.getItem("demoBookings") || "[]");
-  const updated = demoBookings.map(function (item) {
+function updateDemoBooking(bookingId, updateData) {
+  const bookings = JSON.parse(localStorage.getItem("demoBookings") || "[]");
+  const updated = bookings.map(function (item) {
     if ((item.id || item._id) === bookingId) {
-      return { ...item, ...bookingData };
+      return { ...item, ...updateData };
     }
     return item;
   });
-  saveDemoBookings(updated);
+  localStorage.setItem("demoBookings", JSON.stringify(updated));
 }
 
 function deleteDemoBooking(bookingId) {
-  const demoBookings = JSON.parse(localStorage.getItem("demoBookings") || "[]");
-  const filtered = demoBookings.filter(function (item) {
+  const bookings = JSON.parse(localStorage.getItem("demoBookings") || "[]");
+  const filtered = bookings.filter(function (item) {
     return (item.id || item._id) !== bookingId;
   });
-  saveDemoBookings(filtered);
+  localStorage.setItem("demoBookings", JSON.stringify(filtered));
 }
 
+// AUTH
 $(document).on("click", "#loginBtn", function () {
   const email = $("#loginEmail").val().trim();
   const password = $("#loginPassword").val().trim();
@@ -299,11 +353,18 @@ $(document).on("click", "#loginBtn", function () {
     contentType: "application/json",
     data: JSON.stringify({ email, password }),
     success: function (res) {
-      localStorage.setItem("token", res.token || "");
-      localStorage.setItem("user", JSON.stringify(res));
+      const token = res.token || "";
+      const user = res.user || {
+        id: res.id || res._id || "",
+        fullName: res.fullName || res.name || "",
+        email: res.email || email
+      };
+
+      localStorage.setItem("token", token);
+      localStorage.setItem("user", JSON.stringify(user));
+
       updateWelcomeName();
       updateAccountPage();
-      $("#loginMsg").text("");
       $.mobile.changePage("#homePage");
     },
     error: function (err) {
@@ -347,11 +408,7 @@ $(document).on("click", "#signupBtn", function () {
     }),
     success: function (res) {
       $("#signupMsg").css("color", "green").text(res.msg || "Signup successful.");
-
-      $("#fullName").val("");
-      $("#signupEmail").val("");
-      $("#signupPassword").val("");
-      $("#confirmPassword").val("");
+      $("#fullName, #signupEmail, #signupPassword, #confirmPassword").val("");
 
       setTimeout(function () {
         $.mobile.changePage("#loginPage");
@@ -374,6 +431,7 @@ $(document).on("click", "#resetPasswordBtn", function () {
   $("#forgotMsg").css("color", "green").text("Reset request submitted.");
 });
 
+// PAGE EVENTS
 $(document).on("pageshow", "#homePage", function () {
   if (!requireLogin()) return;
   updateWelcomeName();
@@ -381,9 +439,7 @@ $(document).on("pageshow", "#homePage", function () {
 
 $(document).on("pageshow", "#carsPage", function () {
   if (!requireLogin()) return;
-  if (allCars.length === 0) {
-    loadCars();
-  }
+  loadCars();
 });
 
 $(document).on("pageshow", "#myBookingsPage", function () {
@@ -396,6 +452,7 @@ $(document).on("pageshow", "#accountPage", function () {
   updateAccountPage();
 });
 
+// CAR EVENTS
 $(document).on("click", "#loadCarsBtn", function () {
   loadCars();
 });
@@ -414,6 +471,7 @@ $(document).on("click", ".viewCarBtn", function () {
   $.mobile.changePage("#carDetailsPage");
 });
 
+// BOOKING EVENTS
 $(document).on("click", "#createBookingBtn", function () {
   if (!selectedCar) {
     $("#bookingMsg").css("color", "red").text("Please select a car first.");
@@ -441,7 +499,7 @@ $(document).on("click", "#createBookingBtn", function () {
   const bookingData = {
     userId: user._id || user.id || "",
     carId: selectedCar._id || selectedCar.id || "",
-    carName: selectedCar.name || selectedCar.carName || "Car",
+    carName: selectedCar.name || "Car",
     pickupDate,
     returnDate,
     pickupLocation
@@ -455,10 +513,7 @@ $(document).on("click", "#createBookingBtn", function () {
     data: JSON.stringify(bookingData),
     success: function (res) {
       $("#bookingMsg").css("color", "green").text(res.msg || "Booking created successfully.");
-
-      $("#pickupDate").val("");
-      $("#returnDate").val("");
-      $("#pickupLocation").val("");
+      $("#pickupDate, #returnDate, #pickupLocation").val("");
 
       setTimeout(function () {
         $.mobile.changePage("#myBookingsPage");
@@ -467,10 +522,7 @@ $(document).on("click", "#createBookingBtn", function () {
     error: function () {
       createDemoBooking(bookingData);
       $("#bookingMsg").css("color", "green").text("Booking saved locally because the bookings API is not ready yet.");
-
-      $("#pickupDate").val("");
-      $("#returnDate").val("");
-      $("#pickupLocation").val("");
+      $("#pickupDate, #returnDate, #pickupLocation").val("");
 
       setTimeout(function () {
         $.mobile.changePage("#myBookingsPage");
@@ -482,12 +534,12 @@ $(document).on("click", "#createBookingBtn", function () {
 $(document).on("click", ".editBookingBtn", function () {
   const bookingId = $(this).data("id");
   const booking = currentBookingList.find(function (item) {
-    return (item._id || item.id) == bookingId;
+    return (item.id || item._id) == bookingId;
   });
 
   if (!booking) return;
 
-  $("#editBookingId").val(booking._id || booking.id || "");
+  $("#editBookingId").val(booking.id || booking._id || "");
   $("#editBookingCarName").val(booking.carName || "");
   $("#editPickupDate").val(booking.pickupDate || "");
   $("#editReturnDate").val(booking.returnDate || "");
@@ -515,11 +567,7 @@ $(document).on("click", "#updateBookingBtn", function () {
     return;
   }
 
-  const updateData = {
-    pickupDate,
-    returnDate,
-    pickupLocation
-  };
+  const updateData = { pickupDate, returnDate, pickupLocation };
 
   $.ajax({
     url: `${API_URL}/api/bookings/${bookingId}`,
@@ -576,6 +624,7 @@ $(document).on("click", "#deleteBookingBtn", function () {
   });
 });
 
+// LOGOUT
 $(document).on("click", "#logoutBtn", function () {
   localStorage.removeItem("token");
   localStorage.removeItem("user");

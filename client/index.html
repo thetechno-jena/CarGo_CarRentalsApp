@@ -1,301 +1,393 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>CarGo Car Rentals</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarGo Car Rentals</title>
 
-  <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
-  <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/jquery.mobile-1.4.5.css">
+    <link rel="stylesheet" href="css/style.css">
 
-  <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
-  <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <script src="js/jquery-2.0.0.js"></script>
+    <script src="js/jquery.mobile-1.4.5.js"></script>
 </head>
 <body>
 
-  <!-- LOGIN PAGE -->
-  <div data-role="page" id="loginPage">
-    <div data-role="header" class="appHeader">
-      <h1>CarGo Login</h1>
+    <!-- LOGIN PAGE -->
+    <div data-role="page" id="loginPage" class="appPage">
+        <div data-role="main" class="ui-content pageContent authPage">
+            <div class="authHero">
+                <div class="brandBadge">CarGo</div>
+                <h1>Drive your next journey</h1>
+                <p>Book reliable rental cars in minutes with a modern mobile experience.</p>
+            </div>
+
+            <div class="glassCard authCard">
+                <div class="sectionHeader">
+                    <span class="eyebrow">WELCOME BACK</span>
+                    <h2>Login</h2>
+                </div>
+
+                <label for="loginEmail">Email</label>
+                <input type="email" id="loginEmail" placeholder="Enter your email">
+
+                <label for="loginPassword">Password</label>
+                <input type="password" id="loginPassword" placeholder="Enter your password">
+
+                <button id="loginBtn" class="primaryBtn">Login</button>
+                <a href="#signupPage" class="ui-btn secondaryBtn">Create Account</a>
+
+                <div class="linkRow">
+                    <a href="#forgotPasswordPage">Forgot Password?</a>
+                </div>
+
+                <p id="loginMsg" class="messageText"></p>
+            </div>
+        </div>
     </div>
 
-    <div data-role="main" class="ui-content">
-      <div class="logoWrap">
-        <img src="www/images/cargo-logo.png" alt="CarGo Logo" class="logoImg">
-      </div>
+    <!-- SIGN UP PAGE -->
+    <div data-role="page" id="signupPage" class="appPage">
+        <div data-role="header" class="topBar">
+            <a href="#loginPage" class="headerBack ui-btn ui-btn-left">Back</a>
+            <h1>Create Account</h1>
+        </div>
 
-      <div class="formCard">
-        <label for="loginEmail">Email</label>
-        <input type="email" id="loginEmail" placeholder="Enter your email">
+        <div data-role="main" class="ui-content pageContent authPage">
+            <div class="authHero smallHero">
+                <div class="brandBadge">CarGo</div>
+                <h1>Join CarGo</h1>
+                <p>Create your account and start booking with confidence.</p>
+            </div>
 
-        <label for="loginPassword">Password</label>
-        <input type="password" id="loginPassword" placeholder="Enter your password">
+            <div class="glassCard authCard">
+                <div class="sectionHeader">
+                    <span class="eyebrow">NEW CUSTOMER</span>
+                    <h2>Sign Up</h2>
+                </div>
 
-        <button id="loginBtn" class="primaryBtn">Login</button>
-        <a href="#signupPage" class="ui-btn secondaryBtn">Create Account</a>
+                <label for="fullName">Full Name</label>
+                <input type="text" id="fullName" placeholder="Enter your full name">
 
-        <p class="smallLinkWrap">
-          <a href="#forgotPasswordPage">Forgot Password?</a>
-        </p>
+                <label for="signupEmail">Email</label>
+                <input type="email" id="signupEmail" placeholder="Enter your email">
 
-        <p id="loginMsg" class="messageText"></p>
-      </div>
-    </div>
-  </div>
+                <label for="signupPassword">Password</label>
+                <input type="password" id="signupPassword" placeholder="Minimum 8 characters">
 
-  <!-- SIGN UP PAGE -->
-  <div data-role="page" id="signupPage">
-    <div data-role="header" class="appHeader">
-      <a href="#loginPage" class="ui-btn ui-btn-left">Back</a>
-      <h1>Sign Up</h1>
-    </div>
+                <label for="confirmPassword">Confirm Password</label>
+                <input type="password" id="confirmPassword" placeholder="Confirm password">
 
-    <div data-role="main" class="ui-content">
-      <div class="logoWrap">
-        <img src="www/images/cargo-logo.png" alt="CarGo Logo" class="logoImg">
-      </div>
+                <button id="signupBtn" class="primaryBtn">Create Account</button>
+                <a href="#loginPage" class="ui-btn secondaryBtn">Back to Login</a>
 
-      <div class="formCard">
-        <label for="fullName">Full Name</label>
-        <input type="text" id="fullName" placeholder="Enter your full name">
-
-        <label for="signupEmail">Email</label>
-        <input type="email" id="signupEmail" placeholder="Enter your email">
-
-        <label for="signupPassword">Password</label>
-        <input type="password" id="signupPassword" placeholder="Minimum 8 characters">
-
-        <label for="confirmPassword">Confirm Password</label>
-        <input type="password" id="confirmPassword" placeholder="Re-enter your password">
-
-        <button id="signupBtn" class="primaryBtn">Sign Up</button>
-        <a href="#loginPage" class="ui-btn secondaryBtn">Back to Login</a>
-
-        <p id="signupMsg" class="messageText"></p>
-      </div>
-    </div>
-  </div>
-
-  <!-- FORGOT PASSWORD PAGE -->
-  <div data-role="page" id="forgotPasswordPage">
-    <div data-role="header" class="appHeader">
-      <a href="#loginPage" class="ui-btn ui-btn-left">Back</a>
-      <h1>Reset Password</h1>
+                <p id="signupMsg" class="messageText"></p>
+            </div>
+        </div>
     </div>
 
-    <div data-role="main" class="ui-content">
-      <div class="formCard">
-        <label for="forgotEmail">Email</label>
-        <input type="email" id="forgotEmail" placeholder="Enter your email">
+    <!-- FORGOT PASSWORD PAGE -->
+    <div data-role="page" id="forgotPasswordPage" class="appPage">
+        <div data-role="header" class="topBar">
+            <a href="#loginPage" class="headerBack ui-btn ui-btn-left">Back</a>
+            <h1>Reset Password</h1>
+        </div>
 
-        <button id="resetPasswordBtn" class="primaryBtn">Reset Password</button>
+        <div data-role="main" class="ui-content pageContent authPage">
+            <div class="glassCard authCard">
+                <div class="sectionHeader">
+                    <span class="eyebrow">ACCOUNT RECOVERY</span>
+                    <h2>Forgot Password</h2>
+                    <p class="sectionText">Enter your email to request a password reset.</p>
+                </div>
 
-        <p id="forgotMsg" class="messageText"></p>
-      </div>
-    </div>
-  </div>
+                <label for="forgotEmail">Email</label>
+                <input type="email" id="forgotEmail" placeholder="Enter your email">
 
-  <!-- HOME PAGE -->
-  <div data-role="page" id="homePage">
-    <div data-role="header" class="appHeader">
-      <h1>CarGo Home</h1>
-    </div>
+                <button id="resetPasswordBtn" class="primaryBtn">Reset Password</button>
 
-    <div data-role="main" class="ui-content">
-      <div class="welcomeCard">
-        <h2 id="welcomeName">Welcome</h2>
-        <p>Find the right car, make a booking, and manage your reservations in one place.</p>
-      </div>
-
-      <div class="menuGrid">
-        <a href="#carsPage" class="menuCard ui-btn">
-          <h3>Browse Cars</h3>
-          <p>View available cars for rent</p>
-        </a>
-
-        <a href="#myBookingsPage" class="menuCard ui-btn">
-          <h3>My Bookings</h3>
-          <p>Check, edit, or cancel bookings</p>
-        </a>
-
-        <a href="#accountPage" class="menuCard ui-btn">
-          <h3>Account</h3>
-          <p>View your profile and logout</p>
-        </a>
-      </div>
+                <p id="forgotMsg" class="messageText"></p>
+            </div>
+        </div>
     </div>
 
-    <div data-role="footer" data-position="fixed" class="bottomNav">
-      <div data-role="navbar">
-        <ul>
-          <li><a href="#homePage" class="ui-btn-active">Home</a></li>
-          <li><a href="#carsPage">Cars</a></li>
-          <li><a href="#myBookingsPage">Bookings</a></li>
-          <li><a href="#accountPage">Account</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
+    <!-- HOME PAGE -->
+    <div data-role="page" id="homePage" class="appPage">
+        <div data-role="header" class="topBar">
+            <h1>CarGo Home</h1>
+        </div>
 
-  <!-- CARS PAGE -->
-  <div data-role="page" id="carsPage">
-    <div data-role="header" class="appHeader">
-      <a href="#homePage" class="ui-btn ui-btn-left">Back</a>
-      <h1>Available Cars</h1>
-    </div>
+        <div class="topTabs">
+            <a href="#homePage" class="activeTab">Home</a>
+            <a href="#carsPage">Cars</a>
+            <a href="#myBookingsPage">Bookings</a>
+            <a href="#accountPage">Account</a>
+        </div>
 
-    <div data-role="main" class="ui-content">
-      <div class="filterCard">
-        <label for="carSearch">Search by name</label>
-        <input type="text" id="carSearch" placeholder="e.g. Toyota, SUV">
+        <div data-role="main" class="ui-content pageContent">
+            <div class="heroPanel">
+                <div class="heroText">
+                    <span class="eyebrow light">SMART CAR RENTAL</span>
+                    <h2 id="welcomeName">Welcome</h2>
+                    <p>Compare vehicles, reserve quickly, and manage bookings from one place.</p>
+                </div>
 
-        <button id="searchCarsBtn" class="secondaryBtn">Search</button>
-        <button id="loadCarsBtn" class="primaryBtn">Load Cars</button>
-      </div>
+                <div class="heroStats">
+                    <div class="statMini">
+                        <strong>Easy</strong>
+                        <span>Booking flow</span>
+                    </div>
+                    <div class="statMini">
+                        <strong>Fast</strong>
+                        <span>Mobile access</span>
+                    </div>
+                </div>
+            </div>
 
-      <div id="carsMsg" class="messageText"></div>
-      <div id="carsList"></div>
-    </div>
+            <div class="sectionHeader spaced">
+                <span class="eyebrow">QUICK ACCESS</span>
+                <h2>What would you like to do?</h2>
+            </div>
 
-    <div data-role="footer" data-position="fixed" class="bottomNav">
-      <div data-role="navbar">
-        <ul>
-          <li><a href="#homePage">Home</a></li>
-          <li><a href="#carsPage" class="ui-btn-active">Cars</a></li>
-          <li><a href="#myBookingsPage">Bookings</a></li>
-          <li><a href="#accountPage">Account</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
+            <div class="featureGrid">
+                <a href="#carsPage" class="featureCard ui-btn">
+                    <div class="featureIcon">🚘</div>
+                    <h3>Browse Cars</h3>
+                    <p>Explore available rental vehicles and compare your options.</p>
+                </a>
 
-  <!-- CAR DETAILS PAGE -->
-  <div data-role="page" id="carDetailsPage">
-    <div data-role="header" class="appHeader">
-      <a href="#carsPage" class="ui-btn ui-btn-left">Back</a>
-      <h1>Car Details</h1>
-    </div>
+                <a href="#myBookingsPage" class="featureCard ui-btn">
+                    <div class="featureIcon">📅</div>
+                    <h3>My Bookings</h3>
+                    <p>View, edit, or cancel your reservations quickly.</p>
+                </a>
 
-    <div data-role="main" class="ui-content">
-      <div id="carDetailsCard" class="detailCard">
-        <p>Select a car from the Cars page.</p>
-      </div>
-
-      <a href="#bookingPage" id="bookNowBtn" class="ui-btn primaryBtn">Book This Car</a>
-    </div>
-  </div>
-
-  <!-- BOOKING PAGE -->
-  <div data-role="page" id="bookingPage">
-    <div data-role="header" class="appHeader">
-      <a href="#carDetailsPage" class="ui-btn ui-btn-left">Back</a>
-      <h1>Create Booking</h1>
+                <a href="#accountPage" class="featureCard ui-btn">
+                    <div class="featureIcon">👤</div>
+                    <h3>Account</h3>
+                    <p>Check your profile details and securely log out.</p>
+                </a>
+            </div>
+        </div>
     </div>
 
-    <div data-role="main" class="ui-content">
-      <div class="formCard">
-        <label for="bookingCarName">Selected Car</label>
-        <input type="text" id="bookingCarName" readonly>
+    <!-- CARS PAGE -->
+    <div data-role="page" id="carsPage" class="appPage">
+        <div data-role="header" class="topBar">
+            <a href="#homePage" class="headerBack ui-btn ui-btn-left">Back</a>
+            <h1>Available Cars</h1>
+        </div>
 
-        <label for="pickupDate">Pickup Date</label>
-        <input type="date" id="pickupDate">
+        <div class="topTabs">
+            <a href="#homePage">Home</a>
+            <a href="#carsPage" class="activeTab">Cars</a>
+            <a href="#myBookingsPage">Bookings</a>
+            <a href="#accountPage">Account</a>
+        </div>
 
-        <label for="returnDate">Return Date</label>
-        <input type="date" id="returnDate">
+        <div data-role="main" class="ui-content pageContent">
+            <div class="glassCard filterPanel">
+                <div class="sectionHeader">
+                    <span class="eyebrow">FIND YOUR CAR</span>
+                    <h2>Search fleet</h2>
+                </div>
 
-        <label for="pickupLocation">Pickup Location</label>
-        <input type="text" id="pickupLocation" placeholder="Enter pickup location">
+                <label for="carSearch">Search by name</label>
+                <input type="text" id="carSearch" placeholder="e.g. Toyota, SUV">
 
-        <button id="createBookingBtn" class="primaryBtn">Confirm Booking</button>
+                <div class="buttonRow">
+                    <button id="searchCarsBtn" class="secondaryBtn">Search</button>
+                    <button id="loadCarsBtn" class="primaryBtn">Load Cars</button>
+                </div>
+            </div>
 
-        <p id="bookingMsg" class="messageText"></p>
-      </div>
-    </div>
-  </div>
+            <p id="carsMsg" class="messageText centerText"></p>
 
-  <!-- MY BOOKINGS PAGE -->
-  <div data-role="page" id="myBookingsPage">
-    <div data-role="header" class="appHeader">
-      <a href="#homePage" class="ui-btn ui-btn-left">Back</a>
-      <h1>My Bookings</h1>
-    </div>
+            <div id="carsEmptyState" class="glassCard emptyCard" style="display:none;">
+                <p>No cars found.</p>
+            </div>
 
-    <div data-role="main" class="ui-content">
-      <div id="bookingsMsg" class="messageText"></div>
-      <div id="bookingsList"></div>
-    </div>
+            <div id="carsList" class="cardsList"></div>
 
-    <div data-role="footer" data-position="fixed" class="bottomNav">
-      <div data-role="navbar">
-        <ul>
-          <li><a href="#homePage">Home</a></li>
-          <li><a href="#carsPage">Cars</a></li>
-          <li><a href="#myBookingsPage" class="ui-btn-active">Bookings</a></li>
-          <li><a href="#accountPage">Account</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <!-- EDIT BOOKING PAGE -->
-  <div data-role="page" id="editBookingPage">
-    <div data-role="header" class="appHeader">
-      <a href="#myBookingsPage" class="ui-btn ui-btn-left">Back</a>
-      <h1>Edit Booking</h1>
-    </div>
-
-    <div data-role="main" class="ui-content">
-      <div class="formCard">
-        <input type="hidden" id="editBookingId">
-
-        <label for="editBookingCarName">Car</label>
-        <input type="text" id="editBookingCarName" readonly>
-
-        <label for="editPickupDate">Pickup Date</label>
-        <input type="date" id="editPickupDate">
-
-        <label for="editReturnDate">Return Date</label>
-        <input type="date" id="editReturnDate">
-
-        <label for="editPickupLocation">Pickup Location</label>
-        <input type="text" id="editPickupLocation">
-
-        <button id="updateBookingBtn" class="primaryBtn">Update Booking</button>
-        <button id="deleteBookingBtn" class="dangerBtn">Cancel Booking</button>
-
-        <p id="editBookingMsg" class="messageText"></p>
-      </div>
-    </div>
-  </div>
-
-  <!-- ACCOUNT PAGE -->
-  <div data-role="page" id="accountPage">
-    <div data-role="header" class="appHeader">
-      <a href="#homePage" class="ui-btn ui-btn-left">Back</a>
-      <h1>Account</h1>
+            <!-- HIDDEN CAR CARD SAMPLE -->
+            <div id="carCardSample" class="carCard" style="display:none;">
+                <img class="carImage carImageEl" src="images/cars/toyota-corolla.jpg" alt="Car image">
+                <h3 class="carNameEl">Car Name</h3>
+                <p><strong>Brand:</strong> <span class="carBrandEl"></span></p>
+                <p><strong>Type:</strong> <span class="carTypeEl"></span></p>
+                <p><strong>Seats:</strong> <span class="carSeatsEl"></span></p>
+                <p><strong>Transmission:</strong> <span class="carTransmissionEl"></span></p>
+                <p><strong>Price per day:</strong> $<span class="carPriceEl"></span></p>
+                <button class="viewCarBtn primaryBtn" data-id="">View Details</button>
+            </div>
+        </div>
     </div>
 
-    <div data-role="main" class="ui-content">
-      <div class="detailCard">
-        <h3>Your Profile</h3>
-        <p id="accountInfo">No user is currently logged in.</p>
-      </div>
+    <!-- CAR DETAILS PAGE -->
+    <div data-role="page" id="carDetailsPage" class="appPage">
+        <div data-role="header" class="topBar">
+            <a href="#carsPage" class="headerBack ui-btn ui-btn-left">Back</a>
+            <h1>Car Details</h1>
+        </div>
 
-      <button id="logoutBtn" class="dangerBtn">Logout</button>
+        <div data-role="main" class="ui-content pageContent">
+            <div class="glassCard detailPanel">
+                <img id="detailCarImage" src="images/cars/toyota-corolla.jpg" alt="Car image" class="carImage">
+                <h2 id="detailCarName">Select a car</h2>
+                <p><strong>Brand:</strong> <span id="detailCarBrand">-</span></p>
+                <p><strong>Type:</strong> <span id="detailCarType">-</span></p>
+                <p><strong>Seats:</strong> <span id="detailCarSeats">-</span></p>
+                <p><strong>Transmission:</strong> <span id="detailCarTransmission">-</span></p>
+                <p><strong>Fuel:</strong> <span id="detailCarFuel">-</span></p>
+                <p><strong>Price per day:</strong> $<span id="detailCarPrice">-</span></p>
+                <p><strong>Description:</strong> <span id="detailCarDescription">No description available.</span></p>
+            </div>
+
+            <button id="bookNowBtn" onclick="$.mobile.changePage('#bookingPage')" class="primaryBtn largeActionBtn">
+                Book This Car
+            </button>
+        </div>
     </div>
 
-    <div data-role="footer" data-position="fixed" class="bottomNav">
-      <div data-role="navbar">
-        <ul>
-          <li><a href="#homePage">Home</a></li>
-          <li><a href="#carsPage">Cars</a></li>
-          <li><a href="#myBookingsPage">Bookings</a></li>
-          <li><a href="#accountPage" class="ui-btn-active">Account</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
+    <!-- BOOKING PAGE -->
+    <div data-role="page" id="bookingPage" class="appPage">
+        <div data-role="header" class="topBar">
+            <a href="#carDetailsPage" class="headerBack ui-btn ui-btn-left">Back</a>
+            <h1>Create Booking</h1>
+        </div>
 
-  <script src="js/script.js"></script>
+        <div data-role="main" class="ui-content pageContent">
+            <div class="glassCard authCard">
+                <div class="sectionHeader">
+                    <span class="eyebrow">BOOKING FORM</span>
+                    <h2>Reserve your car</h2>
+                </div>
+
+                <label for="bookingCarName">Selected Car</label>
+                <input type="text" id="bookingCarName" readonly>
+
+                <label for="pickupDate">Pickup Date</label>
+                <input type="date" id="pickupDate">
+
+                <label for="returnDate">Return Date</label>
+                <input type="date" id="returnDate">
+
+                <label for="pickupLocation">Pickup Location</label>
+                <input type="text" id="pickupLocation" placeholder="Enter pickup location">
+
+                <button id="createBookingBtn" class="primaryBtn">Confirm Booking</button>
+
+                <p id="bookingMsg" class="messageText"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- MY BOOKINGS PAGE -->
+    <div data-role="page" id="myBookingsPage" class="appPage">
+        <div data-role="header" class="topBar">
+            <a href="#homePage" class="headerBack ui-btn ui-btn-left">Back</a>
+            <h1>My Bookings</h1>
+        </div>
+
+        <div class="topTabs">
+            <a href="#homePage">Home</a>
+            <a href="#carsPage">Cars</a>
+            <a href="#myBookingsPage" class="activeTab">Bookings</a>
+            <a href="#accountPage">Account</a>
+        </div>
+
+        <div data-role="main" class="ui-content pageContent">
+            <div class="sectionHeader">
+                <span class="eyebrow">YOUR RESERVATIONS</span>
+                <h2>Manage bookings</h2>
+                <p class="sectionText">View your booking details and make changes if required.</p>
+            </div>
+
+            <p id="bookingsMsg" class="messageText centerText"></p>
+
+            <div id="bookingsEmptyState" class="glassCard emptyCard" style="display:none;">
+                <p>No bookings found.</p>
+            </div>
+
+            <div id="bookingsList" class="cardsList"></div>
+
+            <!-- HIDDEN BOOKING CARD SAMPLE -->
+            <div id="bookingCardSample" class="bookingCard" style="display:none;">
+                <h3 class="bookingCarNameEl">Car Name</h3>
+                <p><strong>Pickup Date:</strong> <span class="bookingPickupDateEl"></span></p>
+                <p><strong>Return Date:</strong> <span class="bookingReturnDateEl"></span></p>
+                <p><strong>Pickup Location:</strong> <span class="bookingPickupLocationEl"></span></p>
+                <p><strong>Status:</strong> <span class="bookingStatusEl"></span></p>
+                <button class="editBookingBtn secondaryBtn" data-id="">Edit Booking</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- EDIT BOOKING PAGE -->
+    <div data-role="page" id="editBookingPage" class="appPage">
+        <div data-role="header" class="topBar">
+            <a href="#myBookingsPage" class="headerBack ui-btn ui-btn-left">Back</a>
+            <h1>Edit Booking</h1>
+        </div>
+
+        <div data-role="main" class="ui-content pageContent">
+            <div class="glassCard authCard">
+                <div class="sectionHeader">
+                    <span class="eyebrow">UPDATE BOOKING</span>
+                    <h2>Edit reservation</h2>
+                </div>
+
+                <input type="hidden" id="editBookingId">
+
+                <label for="editBookingCarName">Car</label>
+                <input type="text" id="editBookingCarName" readonly>
+
+                <label for="editPickupDate">Pickup Date</label>
+                <input type="date" id="editPickupDate">
+
+                <label for="editReturnDate">Return Date</label>
+                <input type="date" id="editReturnDate">
+
+                <label for="editPickupLocation">Pickup Location</label>
+                <input type="text" id="editPickupLocation">
+
+                <button id="updateBookingBtn" class="primaryBtn">Update Booking</button>
+                <button id="deleteBookingBtn" class="dangerBtn">Cancel Booking</button>
+
+                <p id="editBookingMsg" class="messageText"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ACCOUNT PAGE -->
+    <div data-role="page" id="accountPage" class="appPage">
+        <div data-role="header" class="topBar">
+            <a href="#homePage" class="headerBack ui-btn ui-btn-left">Back</a>
+            <h1>Account</h1>
+        </div>
+
+        <div class="topTabs">
+            <a href="#homePage">Home</a>
+            <a href="#carsPage">Cars</a>
+            <a href="#myBookingsPage">Bookings</a>
+            <a href="#accountPage" class="activeTab">Account</a>
+        </div>
+
+        <div data-role="main" class="ui-content pageContent">
+            <div class="glassCard profileCard">
+                <div class="sectionHeader">
+                    <span class="eyebrow">PROFILE</span>
+                    <h2>Your Account</h2>
+                </div>
+
+                <p><strong>Name:</strong> <span id="accountName">N/A</span></p>
+                <p><strong>Email:</strong> <span id="accountEmail">N/A</span></p>
+            </div>
+
+            <button id="logoutBtn" class="dangerBtn">Logout</button>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
 </body>
 </html>
