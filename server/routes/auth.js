@@ -13,9 +13,9 @@ const authRouter = express.Router();
 authRouter.post('/api/signup',async(req,res)=>{
     try{
         const {fullName, email, password, confirm_password} = req.body;
-       /* if (password !== confirm_password) {
+       if (password !== confirm_password) {
   return res.status(400).json({ msg: "Passwords do not match" });
-} */
+} 
 if (!password || password.length < 8) {
       return res.status(400).json({
         msg: "Password must be at least 8 characters"

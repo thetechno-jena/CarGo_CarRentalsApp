@@ -2,6 +2,13 @@
 // import the express module
 const express = require('express');
 
+// cors prevents browser blocks request
+const cors = require("cors");
+
+//import route
+const authRouter = require('../server/routes/auth');
+
+
 // Define the port number the server will listen on
 const PORT = 3000;
 
@@ -9,22 +16,16 @@ const PORT = 3000;
 const mongoose = require('mongoose');
 
 
-// cors prevents browser blocks request
-//const cors = require("cors");
-
-//import route
-const authRouter = require('../server/routes/auth');
-
 // create an instance of an express application : it gives us starting point
 const app = express();
 
 
 /* middleware to register or mount route */
 app.use(express.json());
+app.use(cors()); 
+
 // import authRouter
 app.use(authRouter);
-
-//app.use(cors()); 
 
 // console message
 

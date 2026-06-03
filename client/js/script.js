@@ -1,4 +1,4 @@
-const API_URL = "https://localhost:3000";
+const API_URL = "http://localhost:3000";
 
 $(document).on("click", "#loginBtn", function () {
   const email = $("#loginEmail").val().trim();
@@ -70,7 +70,7 @@ $(document).on("click", "#signupBtn", function () {
       fullName,
       email,
       password,
-      confirmPassword
+      confirm_password : confirmPassword
     }),
 
     success: function (res) {
@@ -128,97 +128,3 @@ $(document).on("click", "#resetPasswordBtn", function () {
 
 // function for trips
 
-function loadTrips() {
-  $.ajax({
-    url: `${API_URL}/api/trips`,
-    method: "GET",
-
-    success: function (trips) {
-      $("#tripFeed").html("");
-
-      if (trips.length === 0) {
-        $("#tripFeed").html("<p>No travel stories yet.</p>");
-        return;
-      }
-
-      trips.forEach(function (trip) {
-        $("#tripFeed").append(`
-          <div class="trip-card">
-            <h3>${trip.tripName}</h3>
-
-            ${
-              trip.photoUrl
-                ? `<img src="${trip.photoUrl}" class="trip-img">`
-                : ""
-            }
-
-            <p><b>Location:</b> ${trip.location}</p>
-            <p><b>Dates:</b> ${trip.startDate} to ${trip.endDate}</p>
-            <p><b>Description:</b> ${trip.description}</p>
-            <p><b>Accommodation:</b> ${trip.accommodation}</p>
-            <p><b>Activities:</b> ${trip.activities}</p>
-          </div>
-        `);
-      });
-    },
-
-    error: function () {
-      $("#tripFeed").html("<p style='color:red;'>Failed to load travel stories.</p>");
-    }
-  });
-}
-
-$(document).on("pageshow", "#homePage", function () {
-  loadTrips();
-});
-
-
-// function for add journey
-$(document).on("pageshow", "#homePage", function () {
-  loadTrips();
-});
-
-$(document).on("click", "#addJourneyBtn", function () {
-  const user = JSON.parse(localStorage.getItem("user"));
-const tripData = {
-  userId: user._id || user.user?._id,
-  tripName: $("#tripName").val(),
-  location: $("#tripLocation").val(),
-  photoUrl: $("#photoUrl").val(),
-  description: $("#tripDescription").val(),
-  accommodation: $("#accommodation").val(),
-  activities: $("#activities").val(),
-  startDate: $("#startDate").val(),
-  endDate: $("#endDate").val()
-};
-
-  if (!tripData.tripName || !tripData.location || !tripData.description) {
-    $("#journeyMsg").css("color", "red").text("Trip name, location and description are required");
-    return;
-  }
-
-  $.ajax({
-    url: `${API_URL}/api/trips`,
-    method: "POST",
-    contentType: "application/json",
-    data: JSON.stringify(tripData),
-
-    success: function (res) {
-  $("#journeyMsg")
-    .css("color", "green")
-    .text(res.msg || "Journey added successfully");
-
-  setTimeout(() => {
-    $.mobile.changePage("#homePage");
-    loadTrips();
-  }, 1500);
-},
-    error: function (err) {
-  console.log(err.responseJSON);
-
-  $("#journeyMsg")
-    .css("color", "red")
-    .text(err.responseJSON?.error || err.responseJSON?.msg || "Failed to add journey");
-}
-  });
-});
