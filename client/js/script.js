@@ -7,6 +7,7 @@ const API_URL =
       ? "http://localhost:3000"
       : window.location.origin);
 
+// Backend API integration update by Gabriel Balbuena (12292617).
 let allCars = [];
 let selectedCar = null;
 let currentBookingList = [];

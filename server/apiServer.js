@@ -1,5 +1,6 @@
 require("dotenv").config({ quiet: true });
 
+// Deployment-ready API update by Gabriel Balbuena (12292617).
 const fs = require("fs");
 const http = require("http");
 const https = require("https");

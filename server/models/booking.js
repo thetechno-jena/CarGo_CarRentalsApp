@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 
+// Booking collection model added by Gabriel Balbuena (12292617).
 const bookingSchema = mongoose.Schema(
   {
     userId: { type: mongoose.Schema.Types.ObjectId, ref: "Signup_User", required: true },

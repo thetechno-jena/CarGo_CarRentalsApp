@@ -1,5 +1,6 @@
 require("dotenv").config({ quiet: true });
 
+// Demo fleet seed script added by Gabriel Balbuena (12292617).
 const mongoose = require("mongoose");
 const Car = require("./models/car");
 

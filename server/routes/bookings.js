@@ -4,6 +4,7 @@ const Booking = require("../models/booking");
 const Car = require("../models/car");
 const authMiddleware = require("../middleware/authMiddleware");
 
+// Bookings API routes added by Gabriel Balbuena (12292617).
 const bookingsRouter = express.Router();
 
 bookingsRouter.post("/api/bookings", authMiddleware, async (req, res) => {

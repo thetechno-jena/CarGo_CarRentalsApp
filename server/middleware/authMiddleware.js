@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
 
+// Auth middleware added by Gabriel Balbuena (12292617).
 function authMiddleware(req, res, next) {
   const header = req.header("Authorization") || "";
   const token = header.startsWith("Bearer ") ? header.slice(7) : "";

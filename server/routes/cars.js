@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const Car = require("../models/car");
 const authMiddleware = require("../middleware/authMiddleware");
 
+// Cars API routes added by Gabriel Balbuena (12292617).
 const carsRouter = express.Router();
 
 carsRouter.get("/api/cars", authMiddleware, async (req, res) => {

@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 
+// Car collection model added by Gabriel Balbuena (12292617).
 const carSchema = mongoose.Schema(
   {
     name: { type: String, required: true, trim: true, unique: true },

@@ -2,6 +2,8 @@
 
 Hybrid car rental app with a jQuery Mobile client, Express API, JWT authentication, and MongoDB Atlas persistence.
 
+Deployment/backend update prepared by Gabriel Balbuena (12292617).
+
 ## Backend Setup
 
 1. Install dependencies:
