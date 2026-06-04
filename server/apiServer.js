@@ -16,7 +16,8 @@ const bookingRouter = require('../server/routes/bookingRoute');
 
 
 // Define the port number the server will listen on
-const PORT = 3000;
+//const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 // import mongoose
 const mongoose = require('mongoose');
@@ -72,7 +73,10 @@ app.use((req, res, next) => {
 const DB =  "mongodb+srv://jenacqu_db:CQUmob269@cluster0.exzhkk6.mongodb.net/travelsekai?retryWrites=true&w=majority";
 // this is for TravelSekai App const DB = "mongodb://jenacqu_db:CQUmob269@ac-thtkcpc-shard-00-00.exzhkk6.mongodb.net:27017,ac-thtkcpc-shard-00-01.exzhkk6.mongodb.net:27017,ac-thtkcpc-shard-00-02.exzhkk6.mongodb.net:27017/travelsekai?replicaSet=atlas-6dy2ru-shard-0&ssl=true&authSource=admin"; */
 
-const DB = "mongodb://jenacqu_db:CQUmob269@ac-thtkcpc-shard-00-00.exzhkk6.mongodb.net:27017,ac-thtkcpc-shard-00-01.exzhkk6.mongodb.net:27017,ac-thtkcpc-shard-00-02.exzhkk6.mongodb.net:27017/CarGo?ssl=true&replicaSet=atlas-6dy2ru-shard-0&authSource=admin";
+//const DB = "mongodb://jenacqu_db:CQUmob269@ac-thtkcpc-shard-00-00.exzhkk6.mongodb.net:27017,ac-thtkcpc-shard-00-01.exzhkk6.mongodb.net:27017,ac-thtkcpc-shard-00-02.exzhkk6.mongodb.net:27017/CarGo?ssl=true&replicaSet=atlas-6dy2ru-shard-0&authSource=admin";
+
+// this for Render
+const DB = process.env.MONGODB_URI;
 
 mongoose.connect(DB)
   .then(() => {
