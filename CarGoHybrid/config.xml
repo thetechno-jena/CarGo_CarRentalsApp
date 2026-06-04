@@ -10,4 +10,8 @@
     <content src="index.html" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
+    <access origin="*" />
+<!-- I have added last 2 lines-->
+<allow-navigation href="*" />
+<allow-intent href="*" />
 </widget>

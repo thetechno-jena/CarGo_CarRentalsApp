@@ -1,4 +1,6 @@
-const API_URL = "http://localhost:3000";
+// const API_URL = "http://localhost:3000";
+// after render deployed
+const API_URL = "https://cargo-carrentalsapp.onrender.com";
 
 let allCars = [];
 let selectedCar = null;
