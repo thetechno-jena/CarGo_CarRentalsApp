@@ -1,125 +1,279 @@
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 html,
 body {
-    margin: 0;
-    padding: 0;
-    font-family: "Segoe UI", Arial, sans-serif;
-    background: linear-gradient(180deg, #f4f7fb 0%, #eef2f8 100%);
-    color: #172033;
-  font-family: Arial, sans-serif;
-  background: linear-gradient(135deg, #07111f, #10243a);
   margin: 0;
   padding: 0;
   min-height: 100vh;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: linear-gradient(135deg, #07111f, #10243a);
+  color: #172033;
 }
 
 body .ui-page {
-    background: transparent !important;
+  background: transparent !important;
 }
 
 .ui-content {
-    padding: 0 !important;
+  padding: 0 !important;
 }
 
+/* AUTH / LOGIN PAGE */
+
+.authPage {
+  min-height: 100vh;
+  padding: 30px 20px;
+}
+
+.authHero {
+  text-align: center;
+  margin: 0 auto 28px;
+}
+
+.hero-logo img {
+  width: 130px;
+  height: auto;
+  display: block;
+  margin: 0 auto 22px;
+}
+
+.authHero h1 {
+  margin: 0 0 10px;
+  font-size: 46px;
+  color: #ffffff;
+  font-weight: 800;
+  text-shadow: none !important;
+}
+
+.authHero p {
+  margin: 0;
+  color: #dbe7f5;
+  font-size: 17px;
+  text-shadow: none !important;
+}
+
+.authCard {
+  width: 100%;
+  max-width: 430px;
+  margin: 0 auto;
+  padding: 28px 26px;
+  background: #ffffff;
+  border-radius: 24px;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.25);
+}
+
+.eyebrow {
+  display: block;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1.4px;
+  color: #f59e0b;
+  margin-bottom: 8px;
+}
+
+.authCard h2 {
+  margin: 0 0 18px;
+  font-size: 28px;
+  color: #0f1f36;
+}
+
+label {
+  margin-top: 10px !important;
+  margin-bottom: 6px !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  color: #243247 !important;
+}
+
+.ui-input-text {
+  border-radius: 16px !important;
+  border: 1px solid #d8e0ec !important;
+  background: #ffffff !important;
+  box-shadow: none !important;
+  margin-bottom: 16px !important;
+}
+
+.ui-input-text input {
+  font-size: 15px !important;
+  color: #172033 !important;
+  padding: 13px 14px !important;
+  background: transparent !important;
+}
+
+.primaryBtn,
+.secondaryBtn,
+.dangerBtn,
+.largeActionBtn,
+.viewCarBtn,
+.editBookingBtn {
+  border: none !important;
+  text-shadow: none !important;
+  box-shadow: none !important;
+  border-radius: 16px !important;
+  font-weight: 700 !important;
+  padding: 14px 18px !important;
+}
+
+.primaryBtn,
+.largeActionBtn,
+.viewCarBtn {
+  background: linear-gradient(135deg, #f59e0b 0%, #ffb703 100%) !important;
+  color: #101828 !important;
+}
+
+.secondaryBtn,
+.editBookingBtn {
+  background: #e8eef7 !important;
+  color: #122037 !important;
+}
+
+.dangerBtn {
+  background: #d64545 !important;
+  color: #ffffff !important;
+}
+
+.linkRow {
+  text-align: right;
+  margin-top: 12px;
+}
+
+.linkRow a {
+  color: #0f4c81 !important;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.messageText {
+  margin-top: 14px;
+  min-height: 20px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+/* APP PAGES */
+
 .appPage {
-    background:
-        radial-gradient(circle at top right, rgba(255, 183, 3, 0.08), transparent 22%),
-        radial-gradient(circle at top left, rgba(17, 93, 155, 0.08), transparent 24%),
-        linear-gradient(180deg, #f6f8fc 0%, #eef2f8 100%);
-    min-height: 100vh;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #07111f, #10243a);
 }
 
 .pageContent {
-    max-width: 1180px;
-    margin: 0 auto;
-    padding: 18px 18px 40px !important;
-}
-
-.authPage {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 20px 18px 40px !important;
 }
 
 .topBar {
-    background: rgba(14, 31, 54, 0.94) !important;
-    border: none !important;
-    box-shadow: 0 8px 24px rgba(12, 26, 45, 0.16);
-    backdrop-filter: blur(10px);
+  background: #0e1f36 !important;
+  border: none !important;
 }
 
 .topBar h1,
 .topBar .ui-title {
-    color: #ffffff !important;
-    font-size: 20px !important;
-    font-weight: 700 !important;
-    letter-spacing: 0.2px;
-    text-shadow: none !important;
-}
-
-.topBar .headerBack,
-.topBar .ui-btn-left {
-    background: rgba(255, 255, 255, 0.12) !important;
-    border: 1px solid rgba(255, 255, 255, 0.16) !important;
-    color: #ffffff !important;
-    border-radius: 12px !important;
-    text-shadow: none !important;
-    box-shadow: none !important;
-    padding: 10px 14px !important;
-    font-weight: 600 !important;
+  color: #ffffff !important;
+  text-shadow: none !important;
 }
 
 .topTabs {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
-    max-width: 1180px;
-    margin: 0 auto;
-    padding: 16px 18px 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 16px 18px 0;
 }
 
 .topTabs a {
-    text-decoration: none;
-    text-align: center;
-    padding: 12px 10px;
-    border-radius: 14px;
-    background: rgba(255, 255, 255, 0.82);
-    color: #4b5565;
-    font-weight: 700;
-    font-size: 14px;
-    box-shadow: 0 10px 24px rgba(17, 35, 61, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.7);
+  text-align: center;
+  padding: 12px 10px;
+  border-radius: 14px;
+  background: #e8eef7;
+  color: #122037 !important;
+  font-weight: 700;
+  text-decoration: none;
 }
 
 .topTabs a.activeTab {
-    background: linear-gradient(135deg, #f59e0b 0%, #ffb703 100%);
-    color: #111827;
+  background: linear-gradient(135deg, #f59e0b 0%, #ffb703 100%);
+  color: #111827 !important;
 }
 
-.authHero {
-    text-align: center;
-    margin-bottom: 24px;
+.glassCard,
+.heroPanel,
+.featureCard,
+.carCard,
+.bookingCard,
+.filterPanel,
+.detailPanel,
+.profileCard,
+.emptyCard {
+  background: #ffffff;
+  border-radius: 24px;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.18);
 }
 
-.authHero h1 {
-    margin: 14px 0 8px;
-    font-size: 34px;
-    line-height: 1.15;
-    color: #0f1f36;
+.authCard,
+.filterPanel,
+.detailPanel,
+.profileCard {
+  max-width: 760px;
+  margin: 0 auto 18px;
+  padding: 28px 24px;
 }
 
-.authHero p {
-    margin: 0;
-    color: #5c687d;
-    font-size: 16px;
+.sectionHeader h2 {
+  margin: 0;
+  font-size: 28px;
+  color: #0f1f36;
 }
 
-.smallHero h1 {
-    font-size: 28px;
+.sectionText {
+  color: #667084;
+}
+
+.cardsList {
+  display: grid;
+  gap: 18px;
+}
+
+.carCard,
+.bookingCard {
+  padding: 20px;
+}
+
+.carCard h3,
+.bookingCard h3 {
+  margin: 0 0 12px;
+  font-size: 26px;
+  color: #122037;
+}
+
+.carCard p,
+.bookingCard p,
+.detailPanel p,
+.profileCard p,
+.emptyCard p {
+  margin: 10px 0;
+  color: #374151;
+  font-size: 15px;
+}
+
+.carCard strong,
+.bookingCard strong,
+.detailPanel strong,
+.profileCard strong {
+  color: #0f1f36;
+}
+
+.carImage {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  border-radius: 18px;
+  margin-bottom: 18px;
+  background: #eef2f7;
 }
 
 .brand-heading {
@@ -142,386 +296,42 @@ body .ui-page {
   margin-left: 8px;
 }
 
-.brandBadge {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 130px;
-    padding: 12px 22px;
-    border-radius: 999px;
-    background: linear-gradient(135deg, #0f4c81 0%, #173f6d 100%);
-    color: #ffffff;
-    font-size: 28px;
-    font-weight: 800;
-    letter-spacing: 0.4px;
-    box-shadow: 0 18px 35px rgba(15, 76, 129, 0.24);
-}
-
-.glassCard,
-.heroPanel,
-.featureCard,
-.carCard,
-.bookingCard {
-    background: rgba(255, 255, 255, 0.84);
-    border: 1px solid rgba(255, 255, 255, 0.72);
-    border-radius: 24px;
-    box-shadow: 0 18px 45px rgba(17, 35, 61, 0.08);
-    backdrop-filter: blur(12px);
-}
-
-.authCard,
-.filterPanel,
-.detailPanel,
-.profileCard {
-    max-width: 760px;
-    margin: 0 auto 18px;
-    padding: 28px 24px;
-}
-
-.sectionHeader {
-    margin-bottom: 16px;
-}
-
-.sectionHeader.spaced {
-    margin-top: 10px;
-    margin-bottom: 18px;
-}
-
-.eyebrow {
-    display: inline-block;
-    font-size: 12px;
-    font-weight: 800;
-    letter-spacing: 1.4px;
-    color: #f59e0b;
-    margin-bottom: 6px;
-}
-
-.eyebrow.light {
-    color: #ffd166;
-}
-
-.sectionHeader h2 {
-    margin: 0;
-    font-size: 28px;
-    color: #0f1f36;
-}
-
-.sectionText {
-    margin: 8px 0 0;
-    color: #667084;
-    font-size: 15px;
-    line-height: 1.5;
-}
-
-.heroPanel {
-    display: flex;
-    justify-content: space-between;
-    gap: 24px;
-    padding: 28px;
-    margin-bottom: 26px;
-    background:
-        linear-gradient(135deg, rgba(14, 31, 54, 0.96) 0%, rgba(15, 76, 129, 0.92) 100%);
-    color: #ffffff;
-    border: none;
-}
-
-.heroPanel h2 {
-    margin: 0 0 8px;
-    font-size: 34px;
-    color: #ffffff;
-}
-
-.heroPanel p {
-    margin: 0;
-    color: rgba(255, 255, 255, 0.82);
-    font-size: 16px;
-    max-width: 620px;
-}
-
-.heroStats {
-    display: flex;
-    gap: 12px;
-    align-items: center;
-}
-
-.statMini {
-    min-width: 108px;
-    padding: 14px 16px;
-    border-radius: 18px;
-    background: rgba(255, 255, 255, 0.12);
-    text-align: center;
-}
-
-.statMini strong {
-    display: block;
-    font-size: 18px;
-    color: #ffffff;
-}
-
-.statMini span {
-    display: block;
-    margin-top: 4px;
-    font-size: 13px;
-    color: rgba(255, 255, 255, 0.8);
-}
-
-.featureGrid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 18px;
-}
-
-.featureCard {
-    padding: 22px;
-    text-align: left !important;
-    border: none !important;
-    box-shadow: 0 18px 42px rgba(17, 35, 61, 0.08) !important;
-}
-
-.featureCard h3 {
-    margin: 0 0 8px;
-    font-size: 22px;
-    color: #122037;
-}
-
-.featureCard p {
-    margin: 0;
-    color: #667084;
-    line-height: 1.55;
-    font-size: 15px;
-}
-
-.featureIcon {
-    width: 52px;
-    height: 52px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    border-radius: 16px;
-    margin-bottom: 16px;
-    background: linear-gradient(135deg, #fff4d6 0%, #ffe5a3 100%);
-}
-
-.cardsList {
-    display: grid;
-    gap: 18px;
-}
-
-.carCard,
-.bookingCard {
-    padding: 20px;
-}
-
-.carCard h3,
-.bookingCard h3 {
-    margin: 0 0 12px;
-    font-size: 26px;
-    color: #122037;
-}
-
-.carCard p,
-.bookingCard p,
-.detailPanel p,
-.profileCard p,
-.emptyCard p {
-    margin: 10px 0;
-    color: #374151;
-    font-size: 15px;
-    line-height: 1.55;
-}
-
-.carCard strong,
-.bookingCard strong,
-.detailPanel strong,
-.profileCard strong {
-    color: #0f1f36;
-}
-
-.carImage {
-    width: 100%;
-    height: 320px;
-    object-fit: cover;
-    border-radius: 18px;
-    margin-bottom: 18px;
-    background: #eef2f7;
-    display: block;
-}
-
-.filterPanel {
-    margin-bottom: 20px;
-}
-
 .buttonRow {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    margin-top: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
 }
 
-.primaryBtn,
-.secondaryBtn,
-.dangerBtn,
-.largeActionBtn,
-.viewCarBtn,
-.editBookingBtn {
-    border: none !important;
-    text-shadow: none !important;
-    box-shadow: none !important;
-    border-radius: 16px !important;
-    font-weight: 700 !important;
-    letter-spacing: 0.2px;
-    padding: 14px 18px !important;
-    transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
-}
-
-.primaryBtn,
-.largeActionBtn,
-.viewCarBtn {
-    background: linear-gradient(135deg, #f59e0b 0%, #ffb703 100%) !important;
-    color: #101828 !important;
-    box-shadow: 0 14px 28px rgba(245, 158, 11, 0.22) !important;
-}
-
-.secondaryBtn,
-.editBookingBtn {
-    background: #e8eef7 !important;
-    color: #122037 !important;
-}
-
-.dangerBtn {
-    background: linear-gradient(135deg, #d64545 0%, #be3030 100%) !important;
-    color: #ffffff !important;
-    box-shadow: 0 14px 28px rgba(214, 69, 69, 0.22) !important;
-}
-
-.largeActionBtn {
-    max-width: 760px;
-    margin: 0 auto;
-    display: block;
-}
-
-.primaryBtn:hover,
-.secondaryBtn:hover,
-.dangerBtn:hover,
-.largeActionBtn:hover,
-.viewCarBtn:hover,
-.editBookingBtn:hover {
-    transform: translateY(-1px);
-    opacity: 0.98;
-}
-
-label {
-    margin-top: 10px !important;
-    margin-bottom: 6px !important;
-    font-size: 14px !important;
-    font-weight: 700 !important;
-    color: #243247 !important;
-}
-
-.ui-input-text,
-textarea,
-select {
-    border-radius: 16px !important;
-    border: 1px solid #d8e0ec !important;
-    background: rgba(255, 255, 255, 0.96) !important;
-    box-shadow: none !important;
-    margin-bottom: 14px !important;
-}
-
-.ui-input-text input,
-textarea,
-select {
-    font-size: 15px !important;
-    color: #172033 !important;
-    padding: 12px 14px !important;
-    background: transparent !important;
-}
-
-.linkRow {
-    text-align: right;
-    margin-top: 12px;
-}
-
-.linkRow a {
-    color: #0f4c81 !important;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 14px;
-}
-
-.messageText {
-    margin-top: 14px;
-    min-height: 20px;
-    font-size: 14px;
-    font-weight: 700;
-    text-align: left;
-}
-
-.centerText {
-    text-align: center;
-}
-
-.emptyCard {
-    padding: 18px 20px;
-    text-align: center;
-}
-
-@media (max-width: 960px) {
-    .featureGrid {
-        grid-template-columns: 1fr;
-    }
-
-    .heroPanel {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .heroStats {
-        width: 100%;
-    }
-
-    .statMini {
-        flex: 1;
-    }
+/* Remove jQuery mobile shadows */
+h1,
+h2,
+h3,
+p,
+span,
+label,
+a,
+button {
+  text-shadow: none !important;
 }
 
 @media (max-width: 640px) {
-    .pageContent {
-        padding: 14px 14px 32px !important;
-    }
+  .authHero h1 {
+    font-size: 34px;
+  }
 
-    .topTabs {
-        grid-template-columns: repeat(2, 1fr);
-        padding: 14px 14px 0;
-    }
+  .authCard {
+    max-width: 100%;
+  }
 
-    .authHero h1,
-    .heroPanel h2 {
-        font-size: 28px;
-    }
+  .topTabs {
+    grid-template-columns: repeat(2, 1fr);
+  }
 
-    .sectionHeader h2 {
-        font-size: 24px;
-    }
+  .buttonRow {
+    grid-template-columns: 1fr;
+  }
 
-    .buttonRow {
-        grid-template-columns: 1fr;
-    }
-
-    .authCard,
-    .filterPanel,
-    .detailPanel,
-    .profileCard {
-        padding: 22px 18px;
-    }
-
-    .carCard h3,
-    .bookingCard h3 {
-        font-size: 22px;
-    }
-
-    .carImage {
-        height: 240px;
-    }
+  .carImage {
+    height: 240px;
+  }
 }
