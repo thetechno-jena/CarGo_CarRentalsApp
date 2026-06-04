@@ -4,105 +4,6 @@ let allCars = [];
 let selectedCar = null;
 let currentBookingList = [];
 
-const demoCars = [
-  {
-    id: "c1",
-    name: "Toyota Corolla",
-    brand: "Toyota",
-    type: "Sedan",
-    seats: 5,
-    transmission: "Automatic",
-    fuel: "Petrol",
-    pricePerDay: 75,
-    image: "images/cars/toyota-corolla.jpg",
-    description: "A reliable and comfortable sedan for city driving, daily travel, and small family trips."
-  },
-  {
-    id: "c2",
-    name: "Hyundai Tucson",
-    brand: "Hyundai",
-    type: "SUV",
-    seats: 5,
-    transmission: "Automatic",
-    fuel: "Diesel",
-    pricePerDay: 105,
-    image: "images/cars/hyundai-tucson.jpg",
-    description: "A spacious SUV suitable for longer journeys, weekend trips, and comfortable highway driving."
-  },
-  {
-    id: "c3",
-    name: "Kia Carnival",
-    brand: "Kia",
-    type: "Van",
-    seats: 8,
-    transmission: "Automatic",
-    fuel: "Petrol",
-    pricePerDay: 130,
-    image: "images/cars/kia-carnival.jpg",
-    description: "A roomy family van ideal for group travel, luggage, and airport transfers."
-  },
-  {
-    id: "c4",
-    name: "Toyota Camry",
-    brand: "Toyota",
-    type: "Sedan",
-    seats: 5,
-    transmission: "Automatic",
-    fuel: "Hybrid",
-    pricePerDay: 95,
-    image: "images/cars/toyota-camry.jpg",
-    description: "A stylish and efficient sedan offering smooth performance, comfort, and low fuel consumption."
-  },
-  {
-    id: "c5",
-    name: "Toyota Crown",
-    brand: "Toyota",
-    type: "Luxury Sedan",
-    seats: 5,
-    transmission: "Automatic",
-    fuel: "Hybrid",
-    pricePerDay: 140,
-    image: "images/cars/toyota-crown.jpg",
-    description: "A premium sedan with a refined interior, elegant styling, and a comfortable driving experience."
-  },
-  {
-    id: "c6",
-    name: "Toyota Land Cruiser",
-    brand: "Toyota",
-    type: "4WD SUV",
-    seats: 7,
-    transmission: "Automatic",
-    fuel: "Diesel",
-    pricePerDay: 180,
-    image: "images/cars/toyota-land-cruiser.jpg",
-    description: "A strong and capable SUV designed for family trips, long-distance travel, and rougher road conditions."
-  },
-  {
-    id: "c7",
-    name: "Mercedes-Benz E-Class",
-    brand: "Mercedes-Benz",
-    type: "Luxury Sedan",
-    seats: 5,
-    transmission: "Automatic",
-    fuel: "Petrol",
-    pricePerDay: 210,
-    image: "images/cars/mercedes-e-class.jpg",
-    description: "A premium executive sedan that combines luxury, performance, and advanced comfort features."
-  },
-  {
-    id: "c8",
-    name: "BMW 5 Series",
-    brand: "BMW",
-    type: "Luxury Sedan",
-    seats: 5,
-    transmission: "Automatic",
-    fuel: "Petrol",
-    pricePerDay: 205,
-    image: "images/cars/bmw-5-series.jpg",
-    description: "A sporty and elegant luxury sedan that delivers a smooth ride and strong premium appeal."
-  }
-];
-
 function getCurrentUser() {
   try {
     return JSON.parse(localStorage.getItem("user") || "{}");
@@ -188,17 +89,9 @@ function renderCars(cars) {
 
 function renderCarDetails(car) {
   if (!car) {
-    $("#detailCarName").text("Select a car");
-    $("#detailCarBrand").text("-");
-    $("#detailCarType").text("-");
-    $("#detailCarSeats").text("-");
-    $("#detailCarTransmission").text("-");
-    $("#detailCarFuel").text("-");
-    $("#detailCarPrice").text("-");
-    $("#detailCarDescription").text("No description available.");
-    setImage($("#detailCarImage"), "images/cars/toyota-corolla.jpg", "images/cars/toyota-corolla.jpg");
-    return;
-  }
+  $("#bookingMsg").css("color", "red").text("Car details not found.");
+  return;
+}
 
   $("#detailCarName").text(car.name || "Car");
   $("#detailCarBrand").text(car.brand || "N/A");
@@ -247,7 +140,7 @@ function loadCars() {
   $("#carsMsg").css("color", "#444").text("Loading cars...");
 
   $.ajax({
-    url: `${API_URL}/api/cars`,
+    url: `${API_URL}/api/getCars`,
     method: "GET",
     success: function (response) {
       const cars = response.cars || response.data || response || [];
@@ -256,9 +149,9 @@ function loadCars() {
       $("#carsMsg").text("");
     },
     error: function () {
-      allCars = demoCars;
-      renderCars(allCars);
-      $("#carsMsg").css("color", "#c17d00").text("Loaded demo cars because the API cars route is not ready yet.");
+      $("#carsMsg")
+        .css("color", "red")
+        .text("Could not load cars from database.");
     }
   });
 }
@@ -286,10 +179,10 @@ function loadBookings() {
   const userId = user._id || user.id || "";
   const token = getToken();
 
-  $("#bookingsMsg").css("color", "#444").text("Loading bookings...");
+  $("#bookingsMsg").css("color", "#ffffff").text("Loading bookings...");
 
   $.ajax({
-    url: `${API_URL}/api/bookings?userId=${userId}`,
+    url: `${API_URL}/api/getBookings?userId=${userId}`,
     method: "GET",
     headers: token ? { Authorization: `Bearer ${token}` } : {},
     success: function (response) {
@@ -299,40 +192,11 @@ function loadBookings() {
       $("#bookingsMsg").text("");
     },
     error: function () {
-      currentBookingList = JSON.parse(localStorage.getItem("demoBookings") || "[]");
-      renderBookings(currentBookingList);
-      $("#bookingsMsg").css("color", "#c17d00").text("Loaded local demo bookings because the bookings API is not ready yet.");
+      $("#bookingsMsg")
+        .css("color", "red")
+        .text("Could not load bookings from database.");
     }
   });
-}
-
-function createDemoBooking(bookingData) {
-  const bookings = JSON.parse(localStorage.getItem("demoBookings") || "[]");
-  bookings.push({
-    id: "b" + Date.now(),
-    ...bookingData,
-    status: "Booked"
-  });
-  localStorage.setItem("demoBookings", JSON.stringify(bookings));
-}
-
-function updateDemoBooking(bookingId, updateData) {
-  const bookings = JSON.parse(localStorage.getItem("demoBookings") || "[]");
-  const updated = bookings.map(function (item) {
-    if ((item.id || item._id) === bookingId) {
-      return { ...item, ...updateData };
-    }
-    return item;
-  });
-  localStorage.setItem("demoBookings", JSON.stringify(updated));
-}
-
-function deleteDemoBooking(bookingId) {
-  const bookings = JSON.parse(localStorage.getItem("demoBookings") || "[]");
-  const filtered = bookings.filter(function (item) {
-    return (item.id || item._id) !== bookingId;
-  });
-  localStorage.setItem("demoBookings", JSON.stringify(filtered));
 }
 
 // AUTH
@@ -463,6 +327,7 @@ $(document).on("click", "#searchCarsBtn", function () {
 
 $(document).on("click", ".viewCarBtn", function () {
   const carId = $(this).data("id");
+
   selectedCar = allCars.find(function (car) {
     return (car._id || car.id) == carId;
   });
@@ -506,7 +371,7 @@ $(document).on("click", "#createBookingBtn", function () {
   };
 
   $.ajax({
-    url: `${API_URL}/api/bookings`,
+    url: `${API_URL}/api/saveBooking`,
     method: "POST",
     headers: token ? { Authorization: `Bearer ${token}` } : {},
     contentType: "application/json",
@@ -519,20 +384,17 @@ $(document).on("click", "#createBookingBtn", function () {
         $.mobile.changePage("#myBookingsPage");
       }, 1200);
     },
-    error: function () {
-      createDemoBooking(bookingData);
-      $("#bookingMsg").css("color", "green").text("Booking saved locally because the bookings API is not ready yet.");
-      $("#pickupDate, #returnDate, #pickupLocation").val("");
-
-      setTimeout(function () {
-        $.mobile.changePage("#myBookingsPage");
-      }, 1200);
+    error: function (err) {
+      $("#bookingMsg")
+        .css("color", "red")
+        .text(err.responseJSON?.msg || err.responseJSON?.error || "Booking failed.");
     }
   });
 });
 
 $(document).on("click", ".editBookingBtn", function () {
   const bookingId = $(this).data("id");
+
   const booking = currentBookingList.find(function (item) {
     return (item.id || item._id) == bookingId;
   });
@@ -567,10 +429,14 @@ $(document).on("click", "#updateBookingBtn", function () {
     return;
   }
 
-  const updateData = { pickupDate, returnDate, pickupLocation };
+  const updateData = {
+    pickupDate,
+    returnDate,
+    pickupLocation
+  };
 
   $.ajax({
-    url: `${API_URL}/api/bookings/${bookingId}`,
+    url: `${API_URL}/api/updateBooking/${bookingId}`,
     method: "PUT",
     headers: token ? { Authorization: `Bearer ${token}` } : {},
     contentType: "application/json",
@@ -582,13 +448,10 @@ $(document).on("click", "#updateBookingBtn", function () {
         $.mobile.changePage("#myBookingsPage");
       }, 1000);
     },
-    error: function () {
-      updateDemoBooking(bookingId, updateData);
-      $("#editBookingMsg").css("color", "green").text("Booking updated locally because the bookings API is not ready yet.");
-
-      setTimeout(function () {
-        $.mobile.changePage("#myBookingsPage");
-      }, 1000);
+    error: function (err) {
+      $("#editBookingMsg")
+        .css("color", "red")
+        .text(err.responseJSON?.msg || err.responseJSON?.error || "Booking update failed.");
     }
   });
 });
@@ -603,7 +466,7 @@ $(document).on("click", "#deleteBookingBtn", function () {
   }
 
   $.ajax({
-    url: `${API_URL}/api/bookings/${bookingId}`,
+    url: `${API_URL}/api/deleteBooking/${bookingId}`,
     method: "DELETE",
     headers: token ? { Authorization: `Bearer ${token}` } : {},
     success: function (res) {
@@ -613,13 +476,10 @@ $(document).on("click", "#deleteBookingBtn", function () {
         $.mobile.changePage("#myBookingsPage");
       }, 1000);
     },
-    error: function () {
-      deleteDemoBooking(bookingId);
-      $("#editBookingMsg").css("color", "green").text("Booking cancelled locally because the bookings API is not ready yet.");
-
-      setTimeout(function () {
-        $.mobile.changePage("#myBookingsPage");
-      }, 1000);
+    error: function (err) {
+      $("#editBookingMsg")
+        .css("color", "red")
+        .text(err.responseJSON?.msg || err.responseJSON?.error || "Booking delete failed.");
     }
   });
 });

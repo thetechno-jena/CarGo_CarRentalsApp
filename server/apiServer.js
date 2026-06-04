@@ -8,6 +8,12 @@ const cors = require("cors");
 //import route
 const authRouter = require('../server/routes/auth');
 
+// import car route
+const carRouter = require('../server/routes/carRoute');
+
+// import bookingRoute
+const bookingRouter = require('../server/routes/bookingRoute');
+
 
 // Define the port number the server will listen on
 const PORT = 3000;
@@ -24,8 +30,14 @@ const app = express();
 app.use(express.json());
 app.use(cors()); 
 
-// import authRouter
+// use authRouter
 app.use(authRouter);
+
+// use carRoute
+app.use(carRouter);
+
+//use bookingRoute
+app.use(bookingRouter);
 
 // console message
 
