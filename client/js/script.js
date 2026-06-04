@@ -1,4 +1,11 @@
-const API_URL = "http://localhost:3000";
+const API_URL =
+  localStorage.getItem("apiUrl") ||
+  window.CARGO_API_URL ||
+  (window.location.protocol === "file:"
+    ? "http://10.0.2.2:3000"
+    : window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
+      ? "http://localhost:3000"
+      : window.location.origin);
 
 let allCars = [];
 let selectedCar = null;
@@ -14,7 +21,7 @@ const demoCars = [
     transmission: "Automatic",
     fuel: "Petrol",
     pricePerDay: 75,
-    image: "images/cars/toyota-corolla.jpg",
+    image: "Images/Cars/toyota-corolla.jpg",
     description: "A reliable and comfortable sedan for city driving, daily travel, and small family trips."
   },
   {
@@ -26,7 +33,7 @@ const demoCars = [
     transmission: "Automatic",
     fuel: "Diesel",
     pricePerDay: 105,
-    image: "images/cars/hyundai-tucson.jpg",
+    image: "Images/Cars/hyundai-tucson.jpg",
     description: "A spacious SUV suitable for longer journeys, weekend trips, and comfortable highway driving."
   },
   {
@@ -38,7 +45,7 @@ const demoCars = [
     transmission: "Automatic",
     fuel: "Petrol",
     pricePerDay: 130,
-    image: "images/cars/kia-carnival.jpg",
+    image: "Images/Cars/kia-carnival.jpg",
     description: "A roomy family van ideal for group travel, luggage, and airport transfers."
   },
   {
@@ -50,7 +57,7 @@ const demoCars = [
     transmission: "Automatic",
     fuel: "Hybrid",
     pricePerDay: 95,
-    image: "images/cars/toyota-camry.jpg",
+    image: "Images/Cars/toyota-camry.jpg",
     description: "A stylish and efficient sedan offering smooth performance, comfort, and low fuel consumption."
   },
   {
@@ -62,7 +69,7 @@ const demoCars = [
     transmission: "Automatic",
     fuel: "Hybrid",
     pricePerDay: 140,
-    image: "images/cars/toyota-crown.jpg",
+    image: "Images/Cars/toyota-crown.jpg",
     description: "A premium sedan with a refined interior, elegant styling, and a comfortable driving experience."
   },
   {
@@ -74,7 +81,7 @@ const demoCars = [
     transmission: "Automatic",
     fuel: "Diesel",
     pricePerDay: 180,
-    image: "images/cars/toyota-land-cruiser.jpg",
+    image: "Images/Cars/toyota-land-cruiser.jpg",
     description: "A strong and capable SUV designed for family trips, long-distance travel, and rougher road conditions."
   },
   {
@@ -86,7 +93,7 @@ const demoCars = [
     transmission: "Automatic",
     fuel: "Petrol",
     pricePerDay: 210,
-    image: "images/cars/mercedes-e-class.jpg",
+    image: "Images/Cars/mercedes-e-class.jpg",
     description: "A premium executive sedan that combines luxury, performance, and advanced comfort features."
   },
   {
@@ -98,7 +105,7 @@ const demoCars = [
     transmission: "Automatic",
     fuel: "Petrol",
     pricePerDay: 205,
-    image: "images/cars/bmw-5-series.jpg",
+    image: "Images/Cars/bmw-5-series.jpg",
     description: "A sporty and elegant luxury sedan that delivers a smooth ride and strong premium appeal."
   }
 ];
@@ -178,8 +185,8 @@ function renderCars(cars) {
 
     setImage(
       card.find(".carImageEl"),
-      car.image || "images/cars/toyota-corolla.jpg",
-      "images/cars/toyota-corolla.jpg"
+      car.image || "Images/Cars/toyota-corolla.jpg",
+      "Images/Cars/toyota-corolla.jpg"
     );
 
     container.append(card);
@@ -196,7 +203,7 @@ function renderCarDetails(car) {
     $("#detailCarFuel").text("-");
     $("#detailCarPrice").text("-");
     $("#detailCarDescription").text("No description available.");
-    setImage($("#detailCarImage"), "images/cars/toyota-corolla.jpg", "images/cars/toyota-corolla.jpg");
+    setImage($("#detailCarImage"), "Images/Cars/toyota-corolla.jpg", "Images/Cars/toyota-corolla.jpg");
     return;
   }
 
@@ -211,8 +218,8 @@ function renderCarDetails(car) {
 
   setImage(
     $("#detailCarImage"),
-    car.image || "images/cars/toyota-corolla.jpg",
-    "images/cars/toyota-corolla.jpg"
+    car.image || "Images/Cars/toyota-corolla.jpg",
+    "Images/Cars/toyota-corolla.jpg"
   );
 
   $("#bookingCarName").val(car.name || "Car");
@@ -244,11 +251,13 @@ function renderBookings(bookings) {
 }
 
 function loadCars() {
+  const token = getToken();
   $("#carsMsg").css("color", "#444").text("Loading cars...");
 
   $.ajax({
     url: `${API_URL}/api/cars`,
     method: "GET",
+    headers: token ? { Authorization: `Bearer ${token}` } : {},
     success: function (response) {
       const cars = response.cars || response.data || response || [];
       allCars = Array.isArray(cars) ? cars : [];
@@ -258,7 +267,7 @@ function loadCars() {
     error: function () {
       allCars = demoCars;
       renderCars(allCars);
-      $("#carsMsg").css("color", "#c17d00").text("Loaded demo cars because the API cars route is not ready yet.");
+      $("#carsMsg").css("color", "#c17d00").text("Loaded demo cars because the API is unavailable.");
     }
   });
 }
@@ -301,7 +310,7 @@ function loadBookings() {
     error: function () {
       currentBookingList = JSON.parse(localStorage.getItem("demoBookings") || "[]");
       renderBookings(currentBookingList);
-      $("#bookingsMsg").css("color", "#c17d00").text("Loaded local demo bookings because the bookings API is not ready yet.");
+      $("#bookingsMsg").css("color", "#c17d00").text("Loaded local demo bookings because the API is unavailable.");
     }
   });
 }
@@ -521,7 +530,7 @@ $(document).on("click", "#createBookingBtn", function () {
     },
     error: function () {
       createDemoBooking(bookingData);
-      $("#bookingMsg").css("color", "green").text("Booking saved locally because the bookings API is not ready yet.");
+      $("#bookingMsg").css("color", "green").text("Booking saved locally because the API is unavailable.");
       $("#pickupDate, #returnDate, #pickupLocation").val("");
 
       setTimeout(function () {
@@ -584,7 +593,7 @@ $(document).on("click", "#updateBookingBtn", function () {
     },
     error: function () {
       updateDemoBooking(bookingId, updateData);
-      $("#editBookingMsg").css("color", "green").text("Booking updated locally because the bookings API is not ready yet.");
+      $("#editBookingMsg").css("color", "green").text("Booking updated locally because the API is unavailable.");
 
       setTimeout(function () {
         $.mobile.changePage("#myBookingsPage");
@@ -615,7 +624,7 @@ $(document).on("click", "#deleteBookingBtn", function () {
     },
     error: function () {
       deleteDemoBooking(bookingId);
-      $("#editBookingMsg").css("color", "green").text("Booking cancelled locally because the bookings API is not ready yet.");
+      $("#editBookingMsg").css("color", "green").text("Booking cancelled locally because the API is unavailable.");
 
       setTimeout(function () {
         $.mobile.changePage("#myBookingsPage");
