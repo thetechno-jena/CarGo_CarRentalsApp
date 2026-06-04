@@ -12,7 +12,8 @@ const authRouter = express.Router();
 
 authRouter.post('/api/signup',async(req,res)=>{
     try{
-        const {fullName, email, password, confirm_password} = req.body;
+        const {fullName, password, confirm_password} = req.body;
+        const email = (req.body.email || "").trim().toLowerCase();
        if (password !== confirm_password) {
   return res.status(400).json({ msg: "Passwords do not match" });
 } 
@@ -32,9 +33,10 @@ if (!password || password.length < 8) {
 
             let new_user = new Signup_User ({fullName, email, password:hashed_password}); 
             new_user = await new_user.save();
-            res.json({
+            const {password: savedPassword, ...userExceptPassword} = new_user._doc;
+            res.status(201).json({
   msg: "Signup successful",
-  user: new_user
+  user: userExceptPassword
 });
         }
     } catch (e){
@@ -46,7 +48,8 @@ if (!password || password.length < 8) {
 
 authRouter.post('/api/signin', async(req,res)=>{
     try{
-        const{email, password} = req.body;
+        const email = (req.body.email || "").trim().toLowerCase();
+        const {password} = req.body;
       const findUser =  await Signup_User.findOne({email});
       if(!findUser){
         return res.status(400).json({msg:"User not found with this email"});
@@ -55,13 +58,12 @@ authRouter.post('/api/signin', async(req,res)=>{
         if(!isMatch){
             return res.status(400).json({msg:"Incorrect Password!"});
         } else{
-            const token = jwt.sign({id: findUser._id},"PasswordKey");
+            const token = jwt.sign({id: findUser._id}, process.env.JWT_SECRET, { expiresIn: "7d" });
 
             //I exclude password return to user - extract password and out from the document
             const{password ,...userExceptPassword} = findUser._doc;
-            const isMatch = password === findUser.password;
             // send the response
-            res.json({token,...userExceptPassword});
+            res.json({token, user: userExceptPassword, ...userExceptPassword});
         }
       }
 
