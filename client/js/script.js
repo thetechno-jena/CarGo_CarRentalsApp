@@ -54,7 +54,7 @@ function showCarsEmptyState(show) {
 function showBookingsEmptyState(show) {
   $("#bookingsEmptyState").toggle(show);
 }
-
+// this function for fetch car details from mongo db
 function renderCars(cars) {
   const container = $("#carsList");
   container.empty();
@@ -66,24 +66,53 @@ function renderCars(cars) {
 
   showCarsEmptyState(false);
 
+  const groupedCars = {};
+
   cars.forEach(function (car) {
-    const card = $("#carCardSample").clone().removeAttr("id").show();
+    const brand = car.brand || "Other";
+    if (!groupedCars[brand]) {
+      groupedCars[brand] = [];
+    }
+    groupedCars[brand].push(car);
+  });
 
-    card.find(".carNameEl").text(car.name || "Car");
-    card.find(".carBrandEl").text(car.brand || "N/A");
-    card.find(".carTypeEl").text(car.type || "N/A");
-    card.find(".carSeatsEl").text(car.seats || "N/A");
-    card.find(".carTransmissionEl").text(car.transmission || "N/A");
-    card.find(".carPriceEl").text(car.pricePerDay || car.price || "N/A");
-    card.find(".viewCarBtn").attr("data-id", car._id || car.id || "");
+  Object.keys(groupedCars).forEach(function (brand) {
+    container.append(`<h2 class="brand-heading">${brand}</h2>`);
 
-    setImage(
-      card.find(".carImageEl"),
-      car.image || "images/cars/toyota-corolla.jpg",
-      "images/cars/toyota-corolla.jpg"
-    );
+    groupedCars[brand].forEach(function (car) {
+      const card = $("#carCardSample").clone().removeAttr("id").show();
 
-    container.append(card);
+      card.find(".carNameEl").text(car.name || "Car");
+      card.find(".carBrandEl").text(car.brand || "N/A");
+      card.find(".carTypeEl").text(car.type || "N/A");
+      card.find(".carSeatsEl").text(car.seats || "N/A");
+      card.find(".carTransmissionEl").text(car.transmission || "N/A");
+      card.find(".carPriceEl").text(car.pricePerDay || car.price || "N/A");
+
+      card.find(".carRegistrationEl").html(
+        `${car.registrationNo || "N/A"} ${
+          car.available
+            ? '<span class="available-text">🟢 Available</span>'
+            : '<span class="not-available-text">🔴 Not Available</span>'
+        }`
+      );
+
+      card.find(".viewCarBtn").attr("data-id", car._id || car.id || "");
+
+      if (!car.available) {
+        card.find(".viewCarBtn")
+          .text("Not Available")
+          .prop("disabled", true);
+      }
+
+      setImage(
+        card.find(".carImageEl"),
+        car.image || "images/cars/toyota-corolla.jpg",
+        "images/cars/toyota-corolla.jpg"
+      );
+
+      container.append(card);
+    });
   });
 }
 

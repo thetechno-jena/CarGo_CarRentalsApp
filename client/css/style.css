@@ -122,6 +122,26 @@ body .ui-page {
     font-size: 28px;
 }
 
+.brand-heading {
+  color: #ffa500;
+  margin: 30px 0 15px;
+  font-size: 26px;
+  border-bottom: 2px solid #ffa500;
+  padding-bottom: 8px;
+}
+
+.available-text {
+  color: green;
+  font-weight: bold;
+  margin-left: 8px;
+}
+
+.not-available-text {
+  color: red;
+  font-weight: bold;
+  margin-left: 8px;
+}
+
 .brandBadge {
     display: inline-flex;
     align-items: center;

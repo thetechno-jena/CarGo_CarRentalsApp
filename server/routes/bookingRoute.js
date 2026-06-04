@@ -6,6 +6,19 @@ const bookingRouter = express.Router();
 // SAVE BOOKING
 bookingRouter.post("/api/saveBooking", async (req, res) => {
   try {
+    const existingBooking = await Booking.findOne({
+      carId: req.body.carId,
+      status: "Booked",
+      pickupDate: { $lte: req.body.returnDate },
+      returnDate: { $gte: req.body.pickupDate }
+    });
+
+    if (existingBooking) {
+      return res.status(400).json({
+        msg: "This car is already booked for the selected dates."
+      });
+    }
+
     const booking = new Booking(req.body);
     await booking.save();
 
@@ -13,6 +26,7 @@ bookingRouter.post("/api/saveBooking", async (req, res) => {
       msg: "Booking saved successfully",
       booking
     });
+
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
