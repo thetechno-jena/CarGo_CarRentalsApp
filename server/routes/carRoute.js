@@ -22,27 +22,35 @@ carRouter.post("/api/saveCars", async (req, res) => {
 // GET ALL CARS WITH AVAILABILITY
 carRouter.get("/api/getCars", async (req, res) => {
   try {
+    const today = new Date().toISOString().split("T")[0];
+
     const cars = await Car.find();
 
-    const bookedCars = await Booking.find({
-      status: "Booked"
-    });
-
-    const bookedCarIds = bookedCars.map(function (booking) {
-      return booking.carId;
+    const activeBookings = await Booking.find({
+      status: "Booked",
+      returnDate: { $gte: today }
     });
 
     const carsWithAvailability = cars.map(function (car) {
       const carObject = car.toObject();
 
-      carObject.available = !bookedCarIds.includes(car._id.toString());
+      const booking = activeBookings.find(function (booking) {
+        return booking.carId === car._id.toString();
+      });
+
+      if (booking) {
+        carObject.available = false;
+        carObject.unavailableUntil = booking.returnDate;
+      } else {
+        carObject.available = true;
+        carObject.unavailableUntil = "";
+      }
 
       return carObject;
     });
 
-    res.json({
-      cars: carsWithAvailability
-    });
+    console.log(carsWithAvailability);
+    res.json({ cars: carsWithAvailability });
 
   } catch (error) {
     res.status(500).json({ error: error.message });
