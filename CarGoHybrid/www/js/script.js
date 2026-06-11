@@ -1,6 +1,6 @@
-//const API_URL = "http://localhost:3000";
+const API_URL = "http://localhost:3000";
 // after render deployed
-const API_URL = "https://cargo-carrentalsapp.onrender.com";
+//const API_URL = "https://cargo-carrentalsapp.onrender.com";
 let allCars = [];
 let selectedCar = null;
 let currentBookingList = [];
@@ -187,9 +187,14 @@ function loadCars() {
     url: `${API_URL}/api/getCars`,
     method: "GET",
     success: function (response) {
+
+      console.log("Cars API Response:", response);
+
       const cars = response.cars || response.data || response || [];
       allCars = Array.isArray(cars) ? cars : [];
+
       renderCars(allCars);
+
       $("#carsMsg").text("");
     },
     error: function () {
