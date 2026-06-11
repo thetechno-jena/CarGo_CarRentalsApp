@@ -1,7 +1,6 @@
-// const API_URL = "http://localhost:3000";
+//const API_URL = "http://localhost:3000";
 // after render deployed
 const API_URL = "https://cargo-carrentalsapp.onrender.com";
-
 let allCars = [];
 let selectedCar = null;
 let currentBookingList = [];
@@ -72,9 +71,11 @@ function renderCars(cars) {
 
   cars.forEach(function (car) {
     const brand = car.brand || "Other";
+
     if (!groupedCars[brand]) {
       groupedCars[brand] = [];
     }
+
     groupedCars[brand].push(car);
   });
 
@@ -90,22 +91,34 @@ function renderCars(cars) {
       card.find(".carSeatsEl").text(car.seats || "N/A");
       card.find(".carTransmissionEl").text(car.transmission || "N/A");
       card.find(".carPriceEl").text(car.pricePerDay || car.price || "N/A");
+      card.find(".carRegistrationEl").text(car.registrationNo || "N/A");
 
-      card.find(".carRegistrationEl").html(
-        `${car.registrationNo || "N/A"} ${
-          car.available
-            ? '<span class="available-text">🟢 Available</span>'
-            : '<span class="not-available-text">🔴 Not Available</span>'
-        }`
-      );
+if (car.available) {
+  card.find(".carStatusEl").html(
+    '<span class="available-text">🟢 Available</span>'
+  );
 
-      card.find(".viewCarBtn").attr("data-id", car._id || car.id || "");
+  card.find(".viewCarBtn")
+    .text("View Details")
+    .prop("disabled", false)
+    .attr("data-id", car._id || car.id || "");
 
-      if (!car.available) {
-        card.find(".viewCarBtn")
-          .text("Not Available")
-          .prop("disabled", true);
-      }
+} else {
+  const untilDate = car.unavailableUntil
+    ? new Date(car.unavailableUntil).toLocaleDateString("en-AU")
+    : "the return date";
+
+  card.find(".carStatusEl").html(
+    `<span class="not-available-text">
+      🔴 Not Available until ${untilDate}
+    </span>`
+  );
+
+  card.find(".viewCarBtn")
+    .text("Not Available")
+    .prop("disabled", true)
+    .attr("data-id", "");
+}
 
       setImage(
         card.find(".carImageEl"),
