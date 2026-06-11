@@ -35,8 +35,8 @@ carRouter.get("/api/getCars", async (req, res) => {
       const carObject = car.toObject();
 
       const booking = activeBookings.find(function (booking) {
-        return booking.carId === car._id.toString();
-      });
+  return String(booking.carId) === String(car._id);
+});
 
       if (booking) {
         carObject.available = false;
